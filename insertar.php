@@ -1,9 +1,19 @@
+<?php
+  session_start();
+  if (isset($_SESSION["user"])) {
+    var_dump($_SESSION);
+  } else {
+    session_destroy();
+    header("Location: insertar.php");
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INSERTAR</title>
+    <title>INSERTAR CAMISETA</title>
     <link rel="stylesheet" type="text/css" href=" ">
     <style>
       span {
@@ -13,15 +23,19 @@
     </style>
   </head>
   <body>
+      <header>
+        <a href="index.php"><button>INDEX</button></a>
+        <a href="insertar_equipo.php"><button>INSERTAR EQUIPO</button></a>
+        <a href="login.php"><button>Login</button></a>
+        <a href="logout.php"><button>Cerrar sesion</button></a>
+      </header><br>
       
-      <a href="index.php"><button>A INDEX</button></a><br><br>
-
-      <?php
-		if (!isset($_POST["cod"])) : ?>
-        <form method="post">
+      <?php if (!isset($_POST["id_camiseta1"])) : ?>
+      
+        <form action="insertar.php" method="post" enctype="multipart/form-data">
           <fieldset>
             <legend>CAMISETA</legend>
-            <span>ID_Camiseta:</span><input type="number" name="id_camiseta" required><br>
+            <span>ID_Camiseta:</span><input type="number" name="id_camiseta1" required><br>
             <span>Jugador:</span><input type="text" name="jugador"><br>
             <span>Dorsal:</span><input type="number" name="dorsal"><br>
             <span>Marca:</span><input type="text" name="marca"><br>
@@ -29,77 +43,104 @@
             <span>Temporada:</span><input type="text" name="temporada"><br>
             <span>Competición:</span><input type="text" name="competicion"><br>
             <span>Observaciones:</span><input type="text" name="observaciones"><br>
-            <span>Imagen:</span><input type="file" name="imagen"><br>
-	    <span><input type="submit" value="Enviar"><br>
+            <span>Imagen:</span><input type="file" name="imagen"><br><br>
+                <fieldset>
+                    <legend>EQUIPO</legend>
+                    <span>Equipo:</span><select name="cod_equipo" required><br>
+                        <?php
+                            $connection = new mysqli("localhost", "root", "123456", "camisetas");/*casa*/
+                            //$connection = new mysqli("localhost", "root", "2asirtriana", "camisetas");/*clase*/
+                          if ($connection->connect_errno) {
+                             printf("Connection failed: %s\n", $connection->connect_error);
+                          exit();
+                         }
+                         $result = $connection->query("SELECT id_equipo FROM equipo");
+                         if ($result) {
+                           while ($obj=$result->fetch_object()) {
+                              echo "<option>";
+                              //echo $obj->nombre;
+                              echo $obj->id_equipo;
+                              echo "</option>";
+                           }
+                         } else {
+                           printf("Query failed: %s\n", $connection->connect_error);
+                           exit();
+                         }
+                        ?>
+                        </select>
+                </fieldset>
+	        <br><span><input type="submit" value="Enviar"><br>
 	      </fieldset>
-        </form>
-        <br>
+        </form><br>
             
-        <form method="post">
-          <fieldset>
-            <legend>EQUIPO</legend>
-            <span>ID_Equipo:</span><input type="number" name="id_equipo" required><br>
-            <span>Club/Selección:</span><input type="radio" name="club/seleccion" value="Club" value="Seleccion"><input type="radio" name="club/seleccion" value="Seleccion"><br>
-            <span>Nombre:</span><input type="text" name="nombre"><br>
-            <span>País:</span><input type="text" name="pais"><br>
-            <span>Continente:</span><input type="text" name="continente"><br>
-            <span>Imagen_equipo:</span><input type="file" name="imagen_equipo"><br>
-	    <span><input type="submit" value="Enviar"><br>
-	      </fieldset>
-        </form>
-        <br>
+      <?php else: ?>      
             
-        <form method="post">
-          <fieldset>
-            <legend>camiseta_equipo</legend>
-            <span>ID_Camiseta:</span><input type="number" name="id_camiseta2" required><br>
-            <span>ID_Equipo:</span><input type="number" name="id_equipo2" required><br>
-	    <span><input type="submit" value="Enviar"><br>
-	      </fieldset>
-        </form>
-
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-      <?php else: ?>
-
       <?php
-            echo "<h3>Showing data coming from the form</h3>";
-            var_dump($_POST);
-            //CREATING THE CONNECTION
-      	    $connection = new mysqli("localhost", "root", "123456789", "tf");
-           //TESTING IF THE CONNECTION WAS RIGHT
-           if ($connection->connect_errno) {
-           	printf("Connection failed: %s\n", $connection->connect_error);
-	        exit();
-	   }
-  	   $codigo=$_POST['cod'];
-  	   $consulta= "INSERT INTO CLIENTES VALUES('$codigo','".$_POST['id']."','".$_POST['lastname']."','".$_POST['name']."','".$_POST['address']."','".$_POST['phone']."')";
-  	   var_dump($consulta);
-  	   $result = $connection->query($consulta);
-  	   if (!$result) {
-   		    echo "Query Error";
-       } else {
-  		     echo "New client added";
-  	   }
-     ?>
+        $tmp_file = $_FILES['imagen']['tmp_name'];
+        $target_dir = "img/";
+        $target_file = strtolower($target_dir . basename($_FILES['imagen']['name']));
+        $valid= true;
+        if (file_exists($target_file)) {
+          echo "Sorry, file already exists.";
+          $valid = false;
+        }
+        //Check the size of the file. Up to 2Mb
+        if ($_FILES['imagen']['size'] > (2048000)) {
+                $valid = false;
+                echo 'Oops!  Your file\'s size is to large.';
+            }
+        //Check the file extension: We need an image not any other different type of file
+        $file_extension = pathinfo($target_file, PATHINFO_EXTENSION); // We get the entension
+        if ($file_extension!="jpg" && $file_extension!="jpeg" && $file_extension!="png" && $file_extension!="gif") {
+          $valid = false;
+          echo "Only JPG, JPEG, PNG & GIF files are allowed";
+        }
+        if ($valid) {
+          //Put the file in its place
+          move_uploaded_file($tmp_file, $target_file);
+          echo "PRODUCT ADDED";
+          $connection = new mysqli("localhost", "root", "123456", "camisetas");/*casa*/
+          //$connection = new mysqli("localhost", "root", "2asirtriana", "camisetas");/*clase*/
+          
+          $connection->set_charset("uft8");
+          if ($connection->connect_errno) {
+              printf("Connection failed: %s\n", $connection->connect_error);
+              exit();
+          }
+          //INSERTING THE NEW PRODUCT
+          $id_camiseta1=$_POST['id_camiseta1'];
+          $jugador=$_POST['jugador'];
+          $dorsal=$_POST['dorsal'];
+          $marca=$_POST['marca'];
+          $publicidad=$_POST['publicidad'];
+          $temporada=$_POST['temporada'];
+          $competicion=$_POST['competicion'];
+          $observaciones=$_POST['observaciones'];
+            
+          $cod_equipo=$_POST['cod_equipo'];
+            
+            
+          $query="INSERT INTO camiseta VALUES('$id_camiseta1', '$jugador', '$dorsal', '$marca', '$publicidad', '$temporada', '$competicion', '$target_file', '$observaciones')";
+          echo $query;
+           if ($result = $connection->query($query)) {
+          
+          } else {
+           echo "Fallo insert camiseta";
+           exit();
+          }
+            
+          /*$query2="INSERT INTO camiseta_equipo VALUES('$id_camiseta1', '$cod_equipo')";
+          echo $query2;
+           if ($result = $connection->query($query2)) {
+          
+          } else {
+           echo "Fallo insert camiseta_equipo";
+           exit();
+          }*/
+        }
+      ?>
 
-      <?php endif ?>
+      <?php endif ?>      
+            
   </body>
 </html>

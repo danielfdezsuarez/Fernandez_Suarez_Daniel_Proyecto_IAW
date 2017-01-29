@@ -6,11 +6,16 @@
     <title>CAMISETA</title>
   </head>
   <body>
-      <a href="insertar.php"><button>A INSERTAR</button></a><br>
+      <header>
+        <a href="insertar.php"><button>INSERTAR CAMISETA</button></a>
+        <a href="insertar_equipo.php"><button>INSERTAR EQUIPO</button></a>
+        <a href="login.php"><button>Login</button></a>
+        <a href="logout.php"><button>Cerrar sesion</button></a>
+      </header>
       
     <?php
       /*casa*/ $connection = new mysqli("localhost", "root", "123456", "camisetas");
-      //*clase*/ $connection = new mysqli("localhost", "tf", "12345", "tf");
+      //*clase*/ $connection = new mysqli("localhost", "root", "2asirtriana", "camisetas");
       $connection->set_charset("utf8");
       
       if ($connection->connect_errno) {
@@ -48,7 +53,7 @@
               echo "<tr>";
               echo "<td>".$obj->id_camiseta."</td>";
               echo "<td>".$obj->id_equipo."</td>";
-              echo "<td>".$obj->club/seleccion."</td>";
+              echo "<td>".$obj->club_seleccion."</td>";
               echo "<td>".$obj->nombre."</td>";
               echo "<td>".$obj->pais."</td>";
               echo "<td>".$obj->continente."</td>";
