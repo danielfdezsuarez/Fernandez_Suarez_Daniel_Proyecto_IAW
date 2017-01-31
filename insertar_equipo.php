@@ -1,10 +1,17 @@
 <?php
   session_start();
   if (isset($_SESSION["user"])) {
+<<<<<<< HEAD
     echo 'Estás registrado como: '.$_SESSION['user'];
   } else {
     session_destroy();
     header("Location: login.php");
+=======
+    var_dump($_SESSION);
+  } else {
+    session_destroy();
+    header("Location: insertar_equipo.php");
+>>>>>>> 111879f8e58c23d263215f797b940356f6f10134
   }
 ?>
 
@@ -36,7 +43,11 @@
           <fieldset>
             <legend>EQUIPO</legend>
             <span>ID_Equipo:</span><input type="number" name="id_equipo1" required><br>
+<<<<<<< HEAD
             <span>Club/Selección:</span><input type="radio" name="club_seleccion" value="Club" value="Seleccion"><input type="radio" name="club_seleccion" value="Seleccion"><br>
+=======
+            <span>Club/Selección:</span><input type="radio" name="club_seleccion" value="Club" value="Seleccion"><input type="radio" name="club/seleccion" value="Seleccion"><br>
+>>>>>>> 111879f8e58c23d263215f797b940356f6f10134
             <span>Nombre:</span><input type="text" name="nombre"><br>
             <span>País:</span><input type="text" name="pais"><br>
             <span>Continente:</span><input type="text" name="continente"><br>
@@ -71,7 +82,12 @@
           //Put the file in its place
           move_uploaded_file($tmp_file, $target_fi);
           echo "PRODUCT ADDED";
+<<<<<<< HEAD
           $connection = new mysqli("localhost", "root", "123456", "camisetas");
+=======
+          $connection = new mysqli("localhost", "root", "123456", "camisetas");/*casa*/
+          //$connection = new mysqli("localhost", "root", "2asirtriana", "camisetas");/*clase*/
+>>>>>>> 111879f8e58c23d263215f797b940356f6f10134
           $connection->set_charset("uft8");
           //TESTING IF THE CONNECTION WAS RIGHT
           if ($connection->connect_errno) {
@@ -82,11 +98,18 @@
           
           $id_equipo1=$_POST['id_equipo1'];
           $club_seleccion=$_POST['club_seleccion'];
+<<<<<<< HEAD
           $nombre=$_POST['nombre'];
           $pais=$_POST['pais'];
           $continente=$_POST['continente'];
           
           var_dump($_POST);
+=======
+          $dorsal=$_POST['nombre'];
+          $marca=$_POST['pais'];
+          $publicidad=$_POST['continente'];
+          
+>>>>>>> 111879f8e58c23d263215f797b940356f6f10134
           $query3="INSERT INTO equipo VALUES('$id_equipo1', '$club_seleccion', '$nombre', '$pais', '$continente', '$target_fi')";
           echo $query3;
            if ($result = $connection->query($query3)) {

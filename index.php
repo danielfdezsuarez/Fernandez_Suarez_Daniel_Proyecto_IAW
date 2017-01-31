@@ -4,12 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CAMISETA</title>
+<<<<<<< HEAD
     <style>
       img {
         height: 50px;
         width: 50px;
       }
     </style>
+=======
+>>>>>>> 111879f8e58c23d263215f797b940356f6f10134
   </head>
   <body>
       <header>
@@ -20,7 +23,12 @@
       </header>
       
     <?php
+<<<<<<< HEAD
       $connection = new mysqli("localhost", "root", "123456", "camisetas");
+=======
+      /*casa*/ $connection = new mysqli("localhost", "root", "123456", "camisetas");
+      //*clase*/ $connection = new mysqli("localhost", "root", "2asirtriana", "camisetas");
+>>>>>>> 111879f8e58c23d263215f797b940356f6f10134
       $connection->set_charset("utf8");
       
       if ($connection->connect_errno) {
@@ -62,20 +70,33 @@
               echo "<td>".$obj->nombre."</td>";
               echo "<td>".$obj->pais."</td>";
               echo "<td>".$obj->continente."</td>";
+<<<<<<< HEAD
               $ruta = $obj->imagen_equipo;
               echo "<td><img src='$ruta'></td>";
+=======
+              echo "<td>".$obj->imagen_equipo."</td>";
+>>>>>>> 111879f8e58c23d263215f797b940356f6f10134
               echo "<td>".$obj->jugador."</td>";
               echo "<td>".$obj->dorsal."</td>";
               echo "<td>".$obj->marca."</td>";
               echo "<td>".$obj->publicidad."</td>";
               echo "<td>".$obj->temporada."</td>";
               echo "<td>".$obj->competicion."</td>";
+<<<<<<< HEAD
               $ruta2 = $obj->imagen;
               echo "<td><img src='$ruta2'></td>";
+=======
+              echo "<td>".$obj->imagen."</td>";
+>>>>>>> 111879f8e58c23d263215f797b940356f6f10134
               echo "<td>".$obj->observaciones."</td>";
               echo "</tr>";
           }
           
+<<<<<<< HEAD
+=======
+          
+          
+>>>>>>> 111879f8e58c23d263215f797b940356f6f10134
           $result->close();
           unset($obj);
           unset($connection);
