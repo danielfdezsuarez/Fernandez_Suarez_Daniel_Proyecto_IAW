@@ -1,17 +1,10 @@
 <?php
   session_start();
   if (isset($_SESSION["user"])) {
-<<<<<<< HEAD
     echo 'Estás registrado como: '.$_SESSION['user'];
   } else {
     session_destroy();
     header("Location: login.php");
-=======
-    var_dump($_SESSION);
-  } else {
-    session_destroy();
-    header("Location: insertar.php");
->>>>>>> 111879f8e58c23d263215f797b940356f6f10134
   }
 ?>
 
@@ -55,31 +48,17 @@
                     <legend>EQUIPO</legend>
                     <span>Equipo:</span><select name="cod_equipo" required><br>
                         <?php
-<<<<<<< HEAD
                           $connection = new mysqli("localhost", "root", "123456", "camisetas");
-=======
-                            $connection = new mysqli("localhost", "root", "123456", "camisetas");/*casa*/
-                            //$connection = new mysqli("localhost", "root", "2asirtriana", "camisetas");/*clase*/
->>>>>>> 111879f8e58c23d263215f797b940356f6f10134
                           if ($connection->connect_errno) {
                              printf("Connection failed: %s\n", $connection->connect_error);
                           exit();
                          }
-<<<<<<< HEAD
                          $result = $connection->query("SELECT id_equipo,nombre FROM equipo");
                          if ($result) {
                            while ($obj=$result->fetch_object()) {
                               $valor = $obj->id_equipo;
                               echo "<option  value='$valor'>";                              
                               echo $obj->nombre;
-=======
-                         $result = $connection->query("SELECT id_equipo FROM equipo");
-                         if ($result) {
-                           while ($obj=$result->fetch_object()) {
-                              echo "<option>";
-                              //echo $obj->nombre;
-                              echo $obj->id_equipo;
->>>>>>> 111879f8e58c23d263215f797b940356f6f10134
                               echo "</option>";
                            }
                          } else {
@@ -119,12 +98,7 @@
           //Put the file in its place
           move_uploaded_file($tmp_file, $target_file);
           echo "PRODUCT ADDED";
-<<<<<<< HEAD
           $connection = new mysqli("localhost", "root", "123456", "camisetas");
-=======
-          $connection = new mysqli("localhost", "root", "123456", "camisetas");/*casa*/
-          //$connection = new mysqli("localhost", "root", "2asirtriana", "camisetas");/*clase*/
->>>>>>> 111879f8e58c23d263215f797b940356f6f10134
           
           $connection->set_charset("uft8");
           if ($connection->connect_errno) {
@@ -153,22 +127,14 @@
            exit();
           }
             
-<<<<<<< HEAD
           $query2="INSERT INTO camiseta_equipo VALUES('$id_camiseta1', '$cod_equipo')";
-=======
-          /*$query2="INSERT INTO camiseta_equipo VALUES('$id_camiseta1', '$cod_equipo')";
->>>>>>> 111879f8e58c23d263215f797b940356f6f10134
           echo $query2;
            if ($result = $connection->query($query2)) {
           
           } else {
            echo "Fallo insert camiseta_equipo";
            exit();
-<<<<<<< HEAD
           }
-=======
-          }*/
->>>>>>> 111879f8e58c23d263215f797b940356f6f10134
         }
       ?>
 

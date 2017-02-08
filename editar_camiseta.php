@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDITAR CAMISETA</title>
+    <link rel="stylesheet" type="text/css" href=" ">
+    <style>
+      span {
+        width: 100px;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+
+      <?php if (!isset($_POST["id_camiseta"])) : ?>
+
+        <?php 
+        $cod=$_GET['id'];
+        $connection = new mysqli("localhost", "root", "123456", "camisetas");
+        if ($connection->connect_errno) {
+            printf("Connection failed: %s\n", $connection->connect_error);
+            exit();
+        }
+           
+        $query="SELECT * FROM camiseta WHERE id_camiseta='$cod'";
+        if ($result = $connection->query($query)) {
+            $obj = $result->fetch_object();
+            $id_camiseta=$obj->id_camiseta;
+            $jugador=$obj->jugador;
+            $dorsal=$obj->dorsal;
+            $marca=$obj->marca;
+            $publicidad=$obj->publicidad;
+            $temporada=$obj->temporada;
+            $competicion=$obj->competicion;
+            $observaciones=$obj->observaciones;
+            $imagen=$obj->imagen;
+        }
+      
+        $query2="SELECT id_equipo FROM camiseta_equipo WHERE id_camiseta='$cod'";
+        if ($result = $connection->query($query2)) {
+            $obj = $result->fetch_object();
+            //$id_camiseta=$obj->id_camiseta;
+            $id_equipo=$obj->id_equipo;
+        }
+      
+        ?>
+      
+        <form action="editar_camiseta.php" method="post" enctype="multipart/form-data">
+          <fieldset>
+            <legend>EDITAR CAMISETA</legend>
+            <span>ID_Camiseta:</span><input type="number" name="id_camiseta" value="<?php echo $id_camiseta; ?>"required><br>
+            <span>Jugador:</span><input type="text" name="jugador" value="<?php echo $jugador; ?>"><br>
+            <span>Dorsal:</span><input type="number" name="dorsal" value="<?php echo $dorsal; ?>"><br>
+            <span>Marca:</span><input type="text" name="marca" value="<?php echo $marca; ?>"><br>
+            <span>Publicidad:</span><input type="text" name="publicidad" value="<?php echo $publicidad; ?>"><br>
+            <span>Temporada:</span><input type="text" name="temporada" value="<?php echo $temporada; ?>"><br>
+            <span>Competición:</span><input type="text" name="competicion" value="<?php echo $competicion; ?>"><br>
+            <span>Observaciones:</span><input type="text" name="observaciones" value="<?php echo $observaciones; ?>"><br>
+            <span>Imagen:</span><input type="file" name="imagen" value="<?php echo $imagen; ?>"><br><br>
+                <fieldset>
+                    <legend>EQUIPO</legend>
+                    <span>Equipo:</span><select name="id_equipo" required value="<?php echo $id_equipo; ?>"><br>
+                        <?php
+                          $connection = new mysqli("localhost", "root", "123456", "camisetas");
+                          if ($connection->connect_errno) {
+                             printf("Connection failed: %s\n", $connection->connect_error);
+                          exit();
+                         }
+                         $result = $connection->query("SELECT id_equipo,nombre FROM equipo");
+                         if ($result) {
+                           while ($obj=$result->fetch_object()) {
+                              $valor = $obj->id_equipo;
+                              echo "<option  value='$valor'>";                              
+                              echo $obj->nombre;
+                              echo "</option>";
+                           }
+                         } else {
+                           printf("Query failed: %s\n", $connection->connect_error);
+                           exit();
+                         }
+                        ?>
+                        </select>
+                </fieldset>
+	        <br><span><input type="submit" value="Enviar"><br>
+	      </fieldset>
+        </form><br>
+
+      <?php else: ?>
+
+        <?php
+        
+        $tmp_file = $_FILES['imagen']['tmp_name'];
+        $target_dir = "img/";
+        $target_file = strtolower($target_dir . basename($_FILES['imagen']['name']));
+        $valid= true;
+        if (file_exists($target_file)) {
+          echo "Sorry, file already exists.";
+          $valid = false;
+        }
+        //Check the size of the file. Up to 2Mb
+        if ($_FILES['imagen']['size'] > (2048000)) {
+                $valid = false;
+                echo 'Oops!  Your file\'s size is to large.';
+            }
+        //Check the file extension: We need an image not any other different type of file
+        $file_extension = pathinfo($target_file, PATHINFO_EXTENSION); // We get the entension
+        if ($file_extension!="jpg" && $file_extension!="jpeg" && $file_extension!="png" && $file_extension!="gif") {
+          $valid = false;
+          echo "Only JPG, JPEG, PNG & GIF files are allowed";
+        }
+        if ($valid) {
+          //Put the file in its place
+          move_uploaded_file($tmp_file, $target_file);
+          echo "PRODUCT ADDED";    
+            
+        $connection = new mysqli("localhost", "root", "123456", "camisetas");
+        if ($connection->connect_errno) {
+            printf("Connection failed: %s\n", $connection->connect_error);
+            exit();
+        }
+        //MAKING A UPDATE
+        $id_camiseta=$_POST['id_camiseta'];
+        $jugador=$_POST['jugador'];
+        $dorsal=$_POST['dorsal'];
+        $marca=$_POST['marca'];
+        $publicidad=$_POST['publicidad'];
+        $temporada=$_POST['temporada'];
+        $competicion=$_POST['competicion'];
+        $observaciones=$_POST['observaciones'];
+        $id_equipo=$_POST['id_equipo'];
+        
+        $query3="Update camiseta SET 
+        id_camiseta='$id_camiseta',
+        jugador='$jugador',
+        dorsal='$dorsal',
+        marca='$marca',
+        publicidad='$publicidad',
+        temporada='$temporada',
+        publicidad='$publicidad',
+        imagen='$target_file',
+        observaciones='$observaciones'
+        WHERE id_camiseta='$id_camiseta'";
+            
+        $result = $connection->query($query3);
+        if (!$result) {
+            echo "WRONG QUERY";
+        } else {
+            echo "actualizado correctamente query3";
+            echo var_dump($query3);
+        }
+            
+        $query4="Update camiseta_equipo SET 
+        id_equipo='$id_equipo'
+        WHERE id_camiseta='$id_camiseta'";
+            
+        $result = $connection->query($query4);
+        if (!$result) {
+            echo "WRONG QUERY";
+        } else {
+            echo "actualizado correctamente query4";
+            echo var_dump($query4);
+        }
+        }
+        ?>
+            
+      <?php endif ?>
+
+  </body>
+</html>
