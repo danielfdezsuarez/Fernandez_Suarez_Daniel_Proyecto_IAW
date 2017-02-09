@@ -1,3 +1,13 @@
+<?php
+  session_start();
+  if (isset($_SESSION["user"])) {
+    echo 'Estás registrado como: '.$_SESSION['user'];
+  } else {
+    session_destroy();
+    header("Location: login.php");
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,7 +23,14 @@
     </style>
   </head>
   <body>
-
+      <header>
+        <a href="index.php"><button>INDEX</button></a>
+        <a href="insertar.php"><button>INSERTAR CAMISETA</button></a>
+        <a href="insertar_equipo.php"><button>INSERTAR EQUIPO</button></a>
+        <a href="login.php"><button>Login</button></a>
+        <a href="logout.php"><button>Cerrar sesion</button></a>
+      </header><br>
+      
       <?php if (!isset($_POST["id_camiseta"])) : ?>
 
         <?php 
@@ -35,7 +52,9 @@
             $temporada=$obj->temporada;
             $competicion=$obj->competicion;
             $observaciones=$obj->observaciones;
-            $imagen=$obj->imagen;
+            $ruta=$obj->imagen;
+            echo var_dump($ruta);
+            
         }
       
         $query2="SELECT id_equipo FROM camiseta_equipo WHERE id_camiseta='$cod'";
@@ -50,7 +69,7 @@
         <form action="editar_camiseta.php" method="post" enctype="multipart/form-data">
           <fieldset>
             <legend>EDITAR CAMISETA</legend>
-            <span>ID_Camiseta:</span><input type="number" name="id_camiseta" value="<?php echo $id_camiseta; ?>"required><br>
+            <input type="hidden" value="<?php echo $cod; ?>" name="id_camiseta"/>
             <span>Jugador:</span><input type="text" name="jugador" value="<?php echo $jugador; ?>"><br>
             <span>Dorsal:</span><input type="number" name="dorsal" value="<?php echo $dorsal; ?>"><br>
             <span>Marca:</span><input type="text" name="marca" value="<?php echo $marca; ?>"><br>
@@ -58,10 +77,10 @@
             <span>Temporada:</span><input type="text" name="temporada" value="<?php echo $temporada; ?>"><br>
             <span>Competición:</span><input type="text" name="competicion" value="<?php echo $competicion; ?>"><br>
             <span>Observaciones:</span><input type="text" name="observaciones" value="<?php echo $observaciones; ?>"><br>
-            <span>Imagen:</span><input type="file" name="imagen" value="<?php echo $imagen; ?>"><br><br>
+            <span>Imagen:</span><input type="file" name="imagen"><img src='<?php echo $ruta; ?>'><br><br>
                 <fieldset>
                     <legend>EQUIPO</legend>
-                    <span>Equipo:</span><select name="id_equipo" required value="<?php echo $id_equipo; ?>"><br>
+                    <span>Equipo:</span><select name="id_equipo" required><br>
                         <?php
                           $connection = new mysqli("localhost", "root", "123456", "camisetas");
                           if ($connection->connect_errno) {
@@ -72,7 +91,11 @@
                          if ($result) {
                            while ($obj=$result->fetch_object()) {
                               $valor = $obj->id_equipo;
-                              echo "<option  value='$valor'>";                              
+                              echo "<option  value='$valor'";
+                              if ($valor==$id_equipo) {
+                                  echo " selected ";
+                              }
+                              echo ">";                              
                               echo $obj->nombre;
                               echo "</option>";
                            }
@@ -91,25 +114,31 @@
 
         <?php
         
-        $tmp_file = $_FILES['imagen']['tmp_name'];
-        $target_dir = "img/";
-        $target_file = strtolower($target_dir . basename($_FILES['imagen']['name']));
         $valid= true;
-        if (file_exists($target_file)) {
-          echo "Sorry, file already exists.";
-          $valid = false;
-        }
-        //Check the size of the file. Up to 2Mb
-        if ($_FILES['imagen']['size'] > (2048000)) {
-                $valid = false;
-                echo 'Oops!  Your file\'s size is to large.';
+        var_dump($_FILES);
+            
+        if ($_FILES['imagen']['name']!="") {
+            $tmp_file = $_FILES['imagen']['tmp_name'];
+            $target_dir = "img/";
+            $target_file = strtolower($target_dir . basename($_FILES['imagen']['name']));
+
+            if (file_exists($target_file)) {
+              echo "Sorry, file already exists.";
+              $valid = false;
             }
-        //Check the file extension: We need an image not any other different type of file
-        $file_extension = pathinfo($target_file, PATHINFO_EXTENSION); // We get the entension
-        if ($file_extension!="jpg" && $file_extension!="jpeg" && $file_extension!="png" && $file_extension!="gif") {
-          $valid = false;
-          echo "Only JPG, JPEG, PNG & GIF files are allowed";
+            //Check the size of the file. Up to 2Mb
+            if ($_FILES['imagen']['size'] > (2048000)) {
+                    $valid = false;
+                    echo 'Oops!  Your file\'s size is to large.';
+                }
+            //Check the file extension: We need an image not any other different type of file
+            $file_extension = pathinfo($target_file, PATHINFO_EXTENSION); // We get the entension
+            if ($file_extension!="jpg" && $file_extension!="jpeg" && $file_extension!="png" && $file_extension!="gif") {
+              $valid = false;
+              echo "Only JPG, JPEG, PNG & GIF files are allowed";
+            }    
         }
+        
         if ($valid) {
           //Put the file in its place
           move_uploaded_file($tmp_file, $target_file);
@@ -138,10 +167,16 @@
         marca='$marca',
         publicidad='$publicidad',
         temporada='$temporada',
-        publicidad='$publicidad',
-        imagen='$target_file',
-        observaciones='$observaciones'
+        publicidad='$publicidad'";
+        
+        if ($_FILES['imagen']['name']!="") {
+            $query3=$query3.",imagen='$target_file'";
+        }
+            
+        $query3=$query3.",observaciones='$observaciones'
         WHERE id_camiseta='$id_camiseta'";
+            
+        var_dump($query3);
             
         $result = $connection->query($query3);
         if (!$result) {

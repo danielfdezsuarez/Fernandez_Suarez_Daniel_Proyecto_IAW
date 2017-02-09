@@ -35,7 +35,7 @@
         <form action="insertar.php" method="post" enctype="multipart/form-data">
           <fieldset>
             <legend>CAMISETA</legend>
-            <span>ID_Camiseta:</span><input type="number" name="id_camiseta1" required><br>
+            <span>ID_Camiseta:</span><input type="number" name="id_camiseta1"><br>
             <span>Jugador:</span><input type="text" name="jugador"><br>
             <span>Dorsal:</span><input type="number" name="dorsal"><br>
             <span>Marca:</span><input type="text" name="marca"><br>
@@ -118,7 +118,7 @@
           $cod_equipo=$_POST['cod_equipo'];
             
             
-          $query="INSERT INTO camiseta VALUES('$id_camiseta1', '$jugador', '$dorsal', '$marca', '$publicidad', '$temporada', '$competicion', '$target_file', '$observaciones')";
+          $query="INSERT INTO camiseta VALUES('', $jugador', '$dorsal', '$marca', '$publicidad', '$temporada', '$competicion', '$target_file', '$observaciones')";
           echo $query;
            if ($result = $connection->query($query)) {
           
@@ -127,7 +127,7 @@
            exit();
           }
             
-          $query2="INSERT INTO camiseta_equipo VALUES('$id_camiseta1', '$cod_equipo')";
+          $query2="INSERT INTO camiseta_equipo VALUES('', '$cod_equipo')";
           echo $query2;
            if ($result = $connection->query($query2)) {
           

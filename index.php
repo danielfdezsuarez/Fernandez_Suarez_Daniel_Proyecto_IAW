@@ -28,7 +28,8 @@
           exit();
       }
       
-      if ($result = $connection->query("select * from camiseta join camiseta_equipo on camiseta.id_camiseta=camiseta_equipo.id_camiseta join equipo on camiseta_equipo.id_equipo=equipo.id_equipo;")) {
+      if ($result = $connection->query("select * from camiseta join camiseta_equipo on camiseta.id_camiseta=camiseta_equipo.id_camiseta 
+      join equipo on camiseta_equipo.id_equipo=equipo.id_equipo;")) {
           printf("<p>The select query returned %d rows.</p>", $result->num_rows);
     ?>
 

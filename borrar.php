@@ -1,3 +1,13 @@
+<?php
+  session_start();
+  if (isset($_SESSION["user"])) {
+    echo 'Estás registrado como: '.$_SESSION['user'];
+  } else {
+    session_destroy();
+    header("Location: login.php");
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>

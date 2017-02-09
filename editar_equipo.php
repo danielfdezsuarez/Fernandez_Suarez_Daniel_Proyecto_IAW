@@ -1,3 +1,13 @@
+<?php
+  session_start();
+  if (isset($_SESSION["user"])) {
+    echo 'Estás registrado como: '.$_SESSION['user'];
+  } else {
+    session_destroy();
+    header("Location: login.php");
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,7 +23,14 @@
     </style>
   </head>
   <body>
-
+      <header>
+        <a href="index.php"><button>INDEX</button></a>
+        <a href="insertar.php"><button>INSERTAR CAMISETA</button></a>
+        <a href="insertar_equipo.php"><button>INSERTAR EQUIPO</button></a>
+        <a href="login.php"><button>Login</button></a>
+        <a href="logout.php"><button>Cerrar sesion</button></a>
+      </header><br>
+      
       <?php if (!isset($_POST["id_equipo"])) : ?>
 
         <?php
