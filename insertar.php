@@ -30,12 +30,12 @@
         <a href="logout.php"><button>Cerrar sesion</button></a>
       </header><br>
       
-      <?php if (!isset($_POST["id_camiseta1"])) : ?>
+      <?php if (!isset($_POST["id_camiseta"])) : ?>
       
         <form action="insertar.php" method="post" enctype="multipart/form-data">
           <fieldset>
             <legend>CAMISETA</legend>
-            <span>ID_Camiseta:</span><input type="number" name="id_camiseta1"><br>
+            <span>ID_Camiseta:</span><input type="number" name="id_camiseta"><br>
             <span>Jugador:</span><input type="text" name="jugador"><br>
             <span>Dorsal:</span><input type="number" name="dorsal"><br>
             <span>Marca:</span><input type="text" name="marca"><br>
@@ -106,7 +106,7 @@
               exit();
           }
           //INSERTING THE NEW PRODUCT
-          $id_camiseta1=$_POST['id_camiseta1'];
+          $id_camiseta=$_POST['id_camiseta'];
           $jugador=$_POST['jugador'];
           $dorsal=$_POST['dorsal'];
           $marca=$_POST['marca'];

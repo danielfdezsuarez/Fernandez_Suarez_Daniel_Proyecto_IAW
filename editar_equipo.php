@@ -50,6 +50,7 @@
             $pais=$obj->pais;
             $continente=$obj->continente;
             $imagen_equipo=$obj->imagen_equipo;
+            echo var_dump($club_seleccion);
         }
         ?>
 
@@ -57,7 +58,9 @@
           <fieldset>
             <legend>EDITAR EQUIPO</legend>
             <span>ID_Equipo:</span><input type="number" name="id_equipo" value="<?php echo $id_equipo; ?>" required><br>
-            <span>Club/Selección:</span><input type="radio" name="club_seleccion" value="Club" value="Seleccion"><input type="radio" name="club_seleccion" value="Seleccion"  value="<?php echo $club_seleccion; ?>" required><br>
+            <span>Club/Selección:</span>
+                <input type="radio" name="club_seleccion" value="club" class="radio" <?php echo ($club_seleccion=='club') ? 'checked="checked"' : ''; ?> required/>
+                <input type="radio" name="club_seleccion" value="seleccion" class="radio" <?php echo ($club_seleccion=='seleccion') ? 'checked="checked"' : ''; ?> required/><br>
             <span>Nombre:</span><input type="text" name="nombre" value="<?php echo $nombre; ?>"><br>
             <span>País:</span><input type="text" name="pais" value="<?php echo $pais; ?>"><br>
             <span>Continente:</span><input type="text" name="continente" value="<?php echo $continente; ?>"><br>

@@ -53,7 +53,7 @@
             $competicion=$obj->competicion;
             $observaciones=$obj->observaciones;
             $ruta=$obj->imagen;
-            echo var_dump($ruta);
+            //echo var_dump($ruta);
             
         }
       
@@ -115,7 +115,7 @@
         <?php
         
         $valid= true;
-        var_dump($_FILES);
+        //var_dump($_FILES);
             
         if ($_FILES['imagen']['name']!="") {
             $tmp_file = $_FILES['imagen']['tmp_name'];
@@ -175,8 +175,6 @@
             
         $query3=$query3.",observaciones='$observaciones'
         WHERE id_camiseta='$id_camiseta'";
-            
-        var_dump($query3);
             
         $result = $connection->query($query3);
         if (!$result) {
