@@ -50,21 +50,22 @@
             $pais=$obj->pais;
             $continente=$obj->continente;
             $imagen_equipo=$obj->imagen_equipo;
-            echo var_dump($club_seleccion);
+            $ruta=$obj->imagen_equipo;
+            //echo var_dump($ruta);
         }
         ?>
 
         <form action="editar_equipo.php" method="post" enctype="multipart/form-data">
           <fieldset>
             <legend>EDITAR EQUIPO</legend>
-            <span>ID_Equipo:</span><input type="number" name="id_equipo" value="<?php echo $id_equipo; ?>" required><br>
+            <input type="hidden" value="<?php echo $cod; ?>" name="id_equipo"/>
             <span>Club/Selección:</span>
                 <input type="radio" name="club_seleccion" value="club" class="radio" <?php echo ($club_seleccion=='club') ? 'checked="checked"' : ''; ?> required/>
                 <input type="radio" name="club_seleccion" value="seleccion" class="radio" <?php echo ($club_seleccion=='seleccion') ? 'checked="checked"' : ''; ?> required/><br>
             <span>Nombre:</span><input type="text" name="nombre" value="<?php echo $nombre; ?>"><br>
             <span>País:</span><input type="text" name="pais" value="<?php echo $pais; ?>"><br>
             <span>Continente:</span><input type="text" name="continente" value="<?php echo $continente; ?>"><br>
-            <span>Imagen_equipo:</span><input type="file" name="imagen_equipo" value="<?php echo $imagen_equipo; ?>"><br>
+            <span>Imagen_equipo:</span><input type="file" name="imagen_equipo"><img src='<?php echo $ruta; ?>'><br>
 	    <span><input type="submit" value="Enviar"><br>
 	      </fieldset>
         </form><br>
@@ -74,29 +75,35 @@
 
         <?php
             
-        $tmp_file = $_FILES['imagen_equipo']['tmp_name'];
-        $target_dir = "img/";
-        $target_file = strtolower($target_dir . basename($_FILES['imagen_equipo']['name']));
         $valid= true;
-        if (file_exists($target_file)) {
-          echo "Sorry, file already exists.";
-          $valid = false;
-        }
-        //Check the size of the file. Up to 2Mb
-        if ($_FILES['imagen_equipo']['size'] > (2048000)) {
-                $valid = false;
-                echo 'Oops!  Your file\'s size is to large.';
+        //var_dump($_FILES);
+            
+        if ($_FILES['imagen_equipo']['name']!="") {
+            $tmp_file = $_FILES['imagen_equipo']['tmp_name'];
+            $target_dir = "img/";
+            $target_file = strtolower($target_dir . basename($_FILES['imagen_equipo']['name']));
+
+            if (file_exists($target_file)) {
+              echo "Sorry, file already exists.";
+              $valid = false;
             }
-        //Check the file extension: We need an image not any other different type of file
-        $file_extension = pathinfo($target_file, PATHINFO_EXTENSION); // We get the entension
-        if ($file_extension!="jpg" && $file_extension!="jpeg" && $file_extension!="png" && $file_extension!="gif") {
-          $valid = false;
-          echo "Only JPG, JPEG, PNG & GIF files are allowed";
+            //Check the size of the file. Up to 2Mb
+            if ($_FILES['imagen_equipo']['size'] > (2048000)) {
+                    $valid = false;
+                    echo 'Oops!  Your file\'s size is to large.';
+                }
+            //Check the file extension: We need an image not any other different type of file
+            $file_extension = pathinfo($target_file, PATHINFO_EXTENSION); // We get the entension
+            if ($file_extension!="jpg" && $file_extension!="jpeg" && $file_extension!="png" && $file_extension!="gif") {
+              $valid = false;
+              echo "Only JPG, JPEG, PNG & GIF files are allowed";
+            }    
         }
+        
         if ($valid) {
           //Put the file in its place
           move_uploaded_file($tmp_file, $target_file);
-          echo "PRODUCT ADDED";
+          echo "PRODUCT ADDED";    
         
         $connection = new mysqli("localhost", "root", "123456", "camisetas");
         if ($connection->connect_errno) {
@@ -115,9 +122,13 @@
         club_seleccion='$club_seleccion',
         nombre='$nombre',
         pais='$pais',
-        continente='$continente',
-        imagen_equipo='$target_file'
-        WHERE id_equipo='$id_equipo'";
+        continente='$continente'";
+            
+        if ($_FILES['imagen_equipo']['name']!="") {
+            $query2=$query2.",imagen_equipo='$target_file'";
+        }
+        
+        $query2=$query2." WHERE id_equipo='$id_equipo'";
             
         $result = $connection->query($query2);
         if (!$result) {

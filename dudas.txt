@@ -1,0 +1,14 @@
+-->Insertar camiseta/equipo
+Problema con el autoincremento, no se genera el id
+
+
+QUITAR TODOS LOS IDS QUE SE PUEDEN EDITAR
+APLICAR LOS CAMBIOS DEL ID_CAMISETA EN INSERTAR A INSERTAR_EQUIPO
+
+
+
+-->Si el campo dorsal esta vacío lo registra como 0
+HACER IF ANTES DONDE SI DORSAL ESTA VACIO LO GUARDE COMO VACIO
+
+-->En camiseta, tengo valores null y valores vacíos
+DA IGUAL NULL QUE VACIO PERO ESCOGER UNO
