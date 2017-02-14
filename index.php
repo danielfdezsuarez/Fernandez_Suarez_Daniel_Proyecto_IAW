@@ -78,12 +78,15 @@
                           </a>
                         </form></td>";
               echo "<td>".$obj->jugador."</td>";
-              //echo "<td>".$obj->dorsal."</td>";
-              echo "<td>".if ($dorsal=="") {
+              echo "<td>".$obj->dorsal."</td>";
+              /*echo "<td>";
+              
+              if ($dorsal=="") {
                       
               } else {
                 $obj->dorsal
-             }."</td>";
+              }.
+                  "</td>";*/
               
               echo "<td>".$obj->marca."</td>";
               echo "<td>".$obj->publicidad."</td>";
