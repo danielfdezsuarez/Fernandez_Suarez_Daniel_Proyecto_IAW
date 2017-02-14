@@ -36,7 +36,7 @@
           <fieldset>
             <legend>CAMISETA</legend>
             <input type="hidden" name="id_camiseta"/>
-            <span>ID_Camiseta:</span><input type="number" name="id_camiseta"><br>
+            <!--<span>ID_Camiseta:</span><input type="number" name="id_camiseta"><br>-->
             <span>Jugador:</span><input type="text" name="jugador"><br>
             <span>Dorsal:</span><input type="number" name="dorsal"><br>
             <span>Marca:</span><input type="text" name="marca"><br>
