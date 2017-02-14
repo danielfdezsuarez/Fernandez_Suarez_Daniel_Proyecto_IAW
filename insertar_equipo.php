@@ -30,12 +30,13 @@
         <a href="logout.php"><button>Cerrar sesion</button></a>
       </header><br>
       
-      <?php if (!isset($_POST["id_equipo1"])) : ?>
+      <?php if (!isset($_POST["id_equipo"])) : ?>
       
         <form action="insertar_equipo.php" method="post" enctype="multipart/form-data">
           <fieldset>
             <legend>EQUIPO</legend>
-            <span>ID_Equipo:</span><input type="number" name="id_equipo1" required><br>
+            <input type="hidden" value="<?php echo $cod; ?>" name="id_equipo"/>
+            <!--<span>ID_Equipo:</span><input type="number" name="id_equipo" required><br>-->
             <span>Club/Selección:</span><input type="radio" name="club_seleccion" value="club" value="seleccion"><input type="radio" name="club_seleccion" value="Seleccion" required><br>
             <span>Nombre:</span><input type="text" name="nombre" required><br>
             <span>País:</span><input type="text" name="pais"><br>
@@ -80,14 +81,14 @@
           }
           //INSERTING THE NEW PRODUCT
           
-          $id_equipo1=$_POST['id_equipo1'];
+          $id_equipo=$_POST['id_equipo'];
           $club_seleccion=$_POST['club_seleccion'];
           $nombre=$_POST['nombre'];
           $pais=$_POST['pais'];
           $continente=$_POST['continente'];
           
           var_dump($_POST);
-          $query3="INSERT INTO equipo VALUES('$id_equipo1', '$club_seleccion', '$nombre', '$pais', '$continente', '$target_fi')";
+          $query3="INSERT INTO equipo VALUES('$id_equipo', '$club_seleccion', '$nombre', '$pais', '$continente', '$target_fi')";
           echo $query3;
            if ($result = $connection->query($query3)) {
           

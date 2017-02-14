@@ -35,6 +35,7 @@
         <form action="insertar.php" method="post" enctype="multipart/form-data">
           <fieldset>
             <legend>CAMISETA</legend>
+            <input type="hidden" name="id_camiseta"/>
             <span>ID_Camiseta:</span><input type="number" name="id_camiseta"><br>
             <span>Jugador:</span><input type="text" name="jugador"><br>
             <span>Dorsal:</span><input type="number" name="dorsal"><br>
@@ -116,10 +117,22 @@
           $observaciones=$_POST['observaciones'];
             
           $cod_equipo=$_POST['cod_equipo'];
+        
+          $query="INSERT INTO camiseta VALUES('',
+          '$jugador'";
+
+          if ($dorsal=="") {
+            $query=$query.",null";
+          } else {
+            $query=$query.",$dorsal"  ;
+          }
+
+          $query=$query.",'$marca', '$publicidad', '$temporada', '$competicion', '$target_file', '$observaciones')";
             
-            
-          $query="INSERT INTO camiseta VALUES('', $jugador', '$dorsal', '$marca', '$publicidad', '$temporada', '$competicion', '$target_file', '$observaciones')";
-          echo $query;
+            echo "<br>";
+            echo var_dump($query);
+          /*$query="INSERT INTO camiseta VALUES('', '$jugador', '$dorsal', '$marca', '$publicidad', '$temporada', '$competicion', '$target_file', '$observaciones')";
+          echo $query;*/
            if ($result = $connection->query($query)) {
           
           } else {
@@ -127,7 +140,7 @@
            exit();
           }
             
-          $query2="INSERT INTO camiseta_equipo VALUES('', '$cod_equipo')";
+          $query2="INSERT INTO camiseta_equipo VALUES($connection->insert_id, '$cod_equipo')";
           echo $query2;
            if ($result = $connection->query($query2)) {
           
