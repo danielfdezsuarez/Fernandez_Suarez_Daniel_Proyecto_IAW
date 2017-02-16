@@ -43,6 +43,7 @@
               echo "Error consulta";
           } else {
               echo "Borrado correctamente";
+              header("Refresh:2; url=index.php");
           }
       }
       ?>
