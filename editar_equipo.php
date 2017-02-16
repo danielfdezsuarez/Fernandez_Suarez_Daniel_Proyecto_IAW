@@ -137,6 +137,7 @@
         } else {
             echo "actualizado correctamente query2";
             echo var_dump($query2);
+            header("Refresh:2; url=index.php");
         }
         }
         ?>

@@ -143,7 +143,7 @@
           $query2="INSERT INTO camiseta_equipo VALUES($connection->insert_id, '$cod_equipo')";
           echo $query2;
            if ($result = $connection->query($query2)) {
-          
+               header("Refresh:2; url=index.php");
           } else {
            echo "Fallo insert camiseta_equipo";
            exit();

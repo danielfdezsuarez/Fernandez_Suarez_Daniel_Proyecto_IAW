@@ -37,7 +37,9 @@
             <legend>EQUIPO</legend>
             <input type="hidden" value="<?php echo $cod; ?>" name="id_equipo"/>
             <!--<span>ID_Equipo:</span><input type="number" name="id_equipo" required><br>-->
-            <span>Club/Selección:</span><input type="radio" name="club_seleccion" value="club" value="seleccion"><input type="radio" name="club_seleccion" value="Seleccion" required><br>
+            <span>Club/Selección:</span>
+              <input type="radio" name="club_seleccion" value="club" value="seleccion">
+              <input type="radio" name="club_seleccion" value="seleccion" required><br>
             <span>Nombre:</span><input type="text" name="nombre" required><br>
             <span>País:</span><input type="text" name="pais"><br>
             <span>Continente:</span><input type="text" name="continente"><br>
@@ -91,7 +93,7 @@
           $query3="INSERT INTO equipo VALUES('$id_equipo', '$club_seleccion', '$nombre', '$pais', '$continente', '$target_fi')";
           echo $query3;
            if ($result = $connection->query($query3)) {
-          
+               header("Refresh:2; url=index.php");
           } else {
            echo "Fallo insert equipo";
            exit();

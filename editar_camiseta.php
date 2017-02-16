@@ -162,12 +162,19 @@
         
         $query3="Update camiseta SET 
         id_camiseta='$id_camiseta',
-        jugador='$jugador',
-        dorsal='$dorsal',
+        jugador='$jugador'";
+        
+        if ($dorsal=="") {
+            $query3=$query3.",dorsal=null";
+          } else {
+            $query3=$query3.", dorsal='$dorsal'";
+          }
+        
+        $query3=$query3.",
         marca='$marca',
         publicidad='$publicidad',
         temporada='$temporada',
-        publicidad='$publicidad'";
+        competicion='$competicion'";
         
         if ($_FILES['imagen']['name']!="") {
             $query3=$query3.",imagen='$target_file'";
@@ -179,6 +186,7 @@
         $result = $connection->query($query3);
         if (!$result) {
             echo "WRONG QUERY";
+            echo var_dump($query3);
         } else {
             echo "actualizado correctamente query3";
             echo var_dump($query3);
@@ -194,6 +202,7 @@
         } else {
             echo "actualizado correctamente query4";
             echo var_dump($query4);
+            header("Refresh:2; url=index.php");
         }
         }
         ?>
