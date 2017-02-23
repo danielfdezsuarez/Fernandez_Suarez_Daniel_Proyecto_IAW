@@ -99,7 +99,35 @@
             
     <?php else: ?>      
         
-        <form action="editar_camiseta.php" method="post" enctype="multipart/form-data">
+        <?php
+        
+        $cod=$_GET['id'];
+        $connection = new mysqli("localhost", "root", "123456", "camisetas");
+        if ($connection->connect_errno) {
+            printf("Connection failed: %s\n", $connection->connect_error);
+            exit();
+        }
+        
+        $query="SELECT * FROM camiseta WHERE id_camiseta='$cod'";
+        if ($result = $connection->query($query)) {
+            $obj = $result->fetch_object();
+            $id_camiseta=$obj->id_camiseta;
+            $jugador=$obj->jugador;
+            $dorsal=$obj->dorsal;
+            $marca=$obj->marca;
+            $publicidad=$obj->publicidad;
+            $temporada=$obj->temporada;
+            $competicion=$obj->competicion;
+            $observaciones=$obj->observaciones;
+            $ruta=$obj->imagen;
+            //echo var_dump($ruta);
+            echo var_dump($query);
+            
+        }    
+        
+        ?>
+            
+        <form action="portada.php" method="post" enctype="multipart/form-data">
           <fieldset>
             <legend>EDITAR CAMISETA</legend>
             <input type="hidden" value="<?php echo $cod; ?>" name="id_camiseta"/>

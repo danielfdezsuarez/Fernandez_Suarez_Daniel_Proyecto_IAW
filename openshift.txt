@@ -1,0 +1,29 @@
+openshift
+1-nuevo proyecto
+2-añadir app php 5.6 (phpserver)
+	nombre
+	descripcion
+	url respositorio, no del proyecto
+3-añadir data store mysql
+	usuario db
+	contraseña
+	nombre de la bd
+4-applications>DEPLOYS>app php server>environment>
+	fijar variables entorno
+		mysql_user, mysql_password, mysql_host, mysql_db
+	comprobar el apps>pods>app php server>node
+5-configurar el entorno y phpmyadmin
+	apps>pods>app php server>terminal
+6-bajar phpmyadmin
+	wget url phpmyadmin
+	descomprimir
+7-configurar phpmyadmin
+	entrar env para ver variables entorno
+	cd phpmyadmin
+	renombrar config.default.unc.php a config.inc.php
+	editar con vi config.inc.php
+	host cambiar ip a interna, 10.x.x.x
+8-cambiar archivos php
+	Coger ejemplo git JD, db.configuration.php cambiar variables si es necesario
+	tambien openshift_db_example.php
+	Incluir en todos los archivos php donde se haga conexion a bd

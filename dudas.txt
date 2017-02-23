@@ -1,6 +1,8 @@
 -->PORTADA
 Escoger un equipo y redireccionar a todos sus entradas/post
 
+--cambiar index.php a admin.php (e incluir login)
+--cambiar portada.php a index.php
 
 
 
