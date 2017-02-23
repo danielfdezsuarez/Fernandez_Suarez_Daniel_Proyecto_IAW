@@ -4,7 +4,10 @@ Escoger un equipo y redireccionar a todos sus entradas/post
 --cambiar index.php a admin.php (e incluir login)
 --cambiar portada.php a index.php
 
+para mostrar las camisetas("recorrer con un cursor")
+--no muestra todas las camisetas, se come una
 
+-->HACER BASE DATOS BUENA
 
 -->En camiseta, tengo valores null y valores vacíos
 DA IGUAL NULL QUE VACIO PERO ESCOGER UNO
