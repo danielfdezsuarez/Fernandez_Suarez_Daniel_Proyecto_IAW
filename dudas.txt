@@ -1,13 +1,16 @@
 -->PORTADA
-Escoger un equipo y redireccionar a todos sus entradas/post
+---->Escoger un equipo y redireccionar a todos sus entradas/post
+------>Link (id_Camiseta o icono) a una camiseta concreta
 
 --cambiar index.php a admin.php (e incluir login)
 --cambiar portada.php a index.php
 
 para mostrar las camisetas("recorrer con un cursor")
---no muestra todas las camisetas, se come una
+--como puedo guardar el nombre del equipo
 
 -->HACER BASE DATOS BUENA
+
+-->HACER INCLUDES DE COSAS REPETITIVAS
 
 -->En camiseta, tengo valores null y valores vacíos
 DA IGUAL NULL QUE VACIO PERO ESCOGER UNO

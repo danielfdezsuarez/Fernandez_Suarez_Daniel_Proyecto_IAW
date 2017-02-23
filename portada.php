@@ -35,8 +35,6 @@
       
         <form action="portada.php" method="post" enctype="multipart/form-data">
           <br><fieldset>
-            <input type="hidden" value="<?php echo $cod; ?>" name="id_equipo"/>
-            
             <span>ELEGIR EQUIPO CLUB</span>
               <select name="cod_equipo" required><br>
                     <?php
@@ -65,8 +63,6 @@
             
         <form action="portada.php" method="post" enctype="multipart/form-data">
           <fieldset>
-            <input type="hidden" value="<?php echo $cod; ?>" name="id_equipo"/>
-            
             <span>ELEGIR EQUIPO SELECCIÓN</span>
               <select name="cod_equipo" required><br>
                     <?php
@@ -126,7 +122,7 @@
         
         $query="select * from camiseta join camiseta_equipo on camiseta.id_camiseta=camiseta_equipo.id_camiseta join equipo on camiseta_equipo.id_equipo=equipo.id_equipo WHERE equipo.id_equipo='$cod'";
         if ($result = $connection->query($query)) {
-            $obj = $result->fetch_object();
+            /*$obj = $result->fetch_object();
             $id_camiseta=$obj->id_camiseta;
             $jugador=$obj->jugador;
             $dorsal=$obj->dorsal;
@@ -136,8 +132,9 @@
             $competicion=$obj->competicion;
             $observaciones=$obj->observaciones;
             $ruta=$obj->imagen;
-            $nombre=$obj->nombre;
-            //echo var_dump($ruta);
+            $nombre=$obj->nombre;*/
+            
+            
             echo "<br>";
             echo "Estás viendo el equipo: $nombre";
             echo "<br>";
@@ -145,13 +142,11 @@
             echo "<br>";
             printf("<p>The select query returned %d rows.</p>", $result->num_rows);
             
-        }    
+            
         
             while($obj = $result->fetch_object()) {
               echo "<tr>";
-              //$id_cami=$obj->id_camiseta;
               echo "<td>".$obj->id_camiseta."</a></td>";
-              //echo "<td>".$obj->id_camiseta."</td>";
               echo "<td>".$obj->jugador."</td>";
               echo "<td>".$obj->dorsal."</td>";
               echo "<td>".$obj->marca."</td>";
@@ -162,28 +157,17 @@
               echo "<td><img src='$ruta2'></td>";
               echo "<td>".$obj->observaciones."</td>";
               echo "</tr>";
+                /*$obj->$nombre;
+                echo "2-Estás viendo el equipo: $nombre";*/
           }
-            
             
           $result->close();
           unset($obj);
           unset($connection);  
             
-            
+        }
         ?>
-            
-        
-    <?php
-          /* <php 
-          if isset $_POST {
-            muestro novedades
-          } else {
-            $_POST $id_equipo
-          }
-          */
-          
-      
-    ?>
+    
             
     <?php endif ?>
             
