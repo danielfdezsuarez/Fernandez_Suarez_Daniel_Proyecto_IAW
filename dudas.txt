@@ -1,12 +1,13 @@
--->PORTADA
----->Escoger un equipo y redireccionar a todos sus entradas/post
------->Link (id_Camiseta o icono) a una camiseta concreta
+-->HACER EL BOTON DE SUSCRIPCION Y QUE HAGA ALGO
+-(alert?, form desplegable?, redireccion normal y corriente?)
+-tendra q hacer insert en tabla alerta
+-no se envia el mail, problema smtp
 
 --cambiar index.php a admin.php (e incluir login)
 --cambiar portada.php a index.php
 
 para mostrar las camisetas("recorrer con un cursor")
---como puedo guardar el nombre del equipo
+--como puedo guardar el nombre del equipo?
 
 -->HACER BASE DATOS BUENA
 

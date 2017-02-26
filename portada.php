@@ -156,6 +156,12 @@
               $ruta2 = $obj->imagen;
               echo "<td><img src='$ruta2'></td>";
               echo "<td>".$obj->observaciones."</td>";
+              echo "<td>
+                        <form method='get'>
+                          <a href='resultado.php?id=$obj->id_camiseta'>
+                            <img src='ir.ico';/>
+                          </a>
+                        </form></td>";
               echo "</tr>";
                 /*$obj->$nombre;
                 echo "2-Estás viendo el equipo: $nombre";*/
