@@ -1,17 +1,11 @@
--->HACER EL BOTON DE SUSCRIPCION Y QUE HAGA ALGO
--(alert?, form desplegable?, redireccion normal y corriente?)
--tendra q hacer insert en tabla alerta
--no se envia el mail, problema smtp
+-->SUSCRIPCION
+-al darle al boton: (alert?, form desplegable?, redireccion normal y corriente?)
+-boton: insert en tabla alerta(function?)
+-enviar mail, problema smtp(desde insertar camiseta)
 
---cambiar index.php a admin.php (e incluir login)
---cambiar portada.php a index.php
+
 
 para mostrar las camisetas("recorrer con un cursor")
 --como puedo guardar el nombre del equipo?
 
--->HACER BASE DATOS BUENA
-
 -->HACER INCLUDES DE COSAS REPETITIVAS
-
--->En camiseta, tengo valores null y valores vacíos
-DA IGUAL NULL QUE VACIO PERO ESCOGER UNO

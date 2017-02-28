@@ -20,6 +20,10 @@
         width: 100px;
         display: inline-block;
       }
+    img {
+        max-height: 900px;
+        max-width: 900px;  
+      }
     </style>
   </head>
   <body>

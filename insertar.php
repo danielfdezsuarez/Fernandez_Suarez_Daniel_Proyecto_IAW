@@ -85,7 +85,7 @@
           $valid = false;
         }
         //Check the size of the file. Up to 2Mb
-        if ($_FILES['imagen']['size'] > (2048000)) {
+        if ($_FILES['imagen']['size'] > (5048000)) {
                 $valid = false;
                 echo 'Oops!  Your file\'s size is to large.';
             }
