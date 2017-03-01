@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 28-02-2017 a las 19:46:06
+-- Tiempo de generación: 01-03-2017 a las 21:18:22
 -- Versión del servidor: 5.6.34
 -- Versión de PHP: 5.6.28
 
@@ -28,15 +28,16 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `alerta` (
   `id_alerta` int(11) NOT NULL,
-  `id_equipo` int(11) DEFAULT NULL
+  `id_equipo` int(11) DEFAULT NULL,
+  `mail` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `alerta`
 --
 
-INSERT INTO `alerta` (`id_alerta`, `id_equipo`) VALUES
-(1, 1);
+INSERT INTO `alerta` (`id_alerta`, `id_equipo`, `mail`) VALUES
+(1, 6, 'rot2@gamil.com');
 
 -- --------------------------------------------------------
 
