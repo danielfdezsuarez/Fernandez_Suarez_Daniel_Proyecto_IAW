@@ -29,6 +29,10 @@
         <a href="login.php"><button>Login</button></a>
         <a href="logout.php"><button>Cerrar sesion</button></a>
         <a href="suscripcion.php"><button class="boton">Suscribirse a las novedades de este equipo</button></a>
+        <form action="suscripcion.php" method="post">
+            <button type="submit" name="cosa" value="<php echo $id_equipo; ?>"></button>
+            
+        </form>
       </header><br>
       
       <?php if (!isset($_POST["id_camiseta"])) : ?>

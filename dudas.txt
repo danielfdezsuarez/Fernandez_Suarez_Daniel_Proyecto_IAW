@@ -1,6 +1,7 @@
 -->SUSCRIPCION
 -al darle al boton: (alert?, form desplegable?, redireccion normal y corriente?)
 -boton: insert en tabla alerta(function?)
+¿COMO COJO EL ID_EQUIPO?
 -enviar mail, problema smtp(desde insertar camiseta)
 
 
