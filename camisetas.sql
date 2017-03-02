@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 01-03-2017 a las 21:18:22
--- Versión del servidor: 5.6.34
--- Versión de PHP: 5.6.28
+-- Tiempo de generación: 02-03-2017 a las 10:40:34
+-- Versión del servidor: 5.6.33
+-- Versión de PHP: 5.6.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -27,8 +27,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `alerta` (
-  `id_alerta` int(11) NOT NULL,
-  `id_equipo` int(11) DEFAULT NULL,
+  `id_alerta` int(4) NOT NULL,
+  `id_equipo` int(11) NOT NULL,
   `mail` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -37,7 +37,9 @@ CREATE TABLE `alerta` (
 --
 
 INSERT INTO `alerta` (`id_alerta`, `id_equipo`, `mail`) VALUES
-(1, 6, 'rot2@gamil.com');
+(1, 6, 'rot2@gamil.com'),
+(4, 4, 'mailfalso123'),
+(9, 1, 'mailfalso125453');
 
 -- --------------------------------------------------------
 
@@ -250,6 +252,11 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
+--
+-- AUTO_INCREMENT de la tabla `alerta`
+--
+ALTER TABLE `alerta`
+  MODIFY `id_alerta` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `camiseta`
 --

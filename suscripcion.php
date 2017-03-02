@@ -6,43 +6,70 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href=" ">
     <style>
-      span {
-        width: 100px;
-        display: inline-block;
+        span {
+            width: 100px;
+            display: inline-block;
         }
-      img {
-        max-height: 900px;
-        max-width: 900px;  
-        }
-      .boton {
-        background-color: sandybrown;
-        color: white;
-        }
-      
     </style>
   </head>
   <body>
       
-      
       <?php if (!isset($_POST["id_equipo"])) : ?>
 
         <?php 
-        $cod=isset($_GET['id_equipo']) ? $_GET['id_equipo'] : null;
+        $cod=$_GET['id'];
         $connection = new mysqli("localhost", "root", "123456", "camisetas");
         if ($connection->connect_errno) {
             printf("Connection failed: %s\n", $connection->connect_error);
             exit();
         }
-           
+
         var_dump($cod);
-        echo "<br>";
-      var_dump($_POST);    
         
+        $query="SELECT * from equipo where id_equipo='$cod'";
+            if ($result = $connection->query($query)) {
+                $obj = $result->fetch_object();
+                $id_equipo=$obj->id_equipo;
+            }
+        ?>
       
-      ?>
+        <form action="suscripcion.php" method="post" enctype="multipart/form-data">
+          <fieldset>
+            <legend>SUSCRIPCION</legend>
+            <input type="hidden" name="id_alerta"/>
+            <input type="hidden" name="id_equipo"/>
+            <span>Mail:</span><input type="text" name="mail"><br>
+            <br><span><input type="submit" value="Enviar"><br>
+	      </fieldset>
+        </form><br>
 
       <?php else: ?>
-    
+        
+        <?php
+          $connection = new mysqli("localhost", "root", "123456", "camisetas");
+          $connection->set_charset("uft8");
+          if ($connection->connect_errno) {
+              printf("Connection failed: %s\n", $connection->connect_error);
+              exit();
+          }
+          
+          $id_alerta=$_POST['id_alerta'];
+          $id_equipo=$_POST['id_equipo'];
+          $mail=$_POST['mail'];
+            
+          $query2="INSERT INTO alerta VALUES('', '$id_equipo', '$mail')";
+            var_dump($query2);
+            if ($result = $connection->query($query2)) {
+          
+          } else {
+           echo "Fallo insert query";
+           exit();
+          }
+            
+          
+      ?>
+            
+            
       <?php endif ?>
 
   </body>

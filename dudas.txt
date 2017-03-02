@@ -1,10 +1,10 @@
 -->SUSCRIPCION
 -al darle al boton: (alert?, form desplegable?, redireccion normal y corriente?)
--boton: insert en tabla alerta(function?)
-¿COMO COJO EL ID_EQUIPO?
+-suscripcion.php: insert en tabla alerta(function?)
 -enviar mail, problema smtp(desde insertar camiseta)
 
-
+INSERT ALERTA
+-->no funciona id_equipo
 
 para mostrar las camisetas("recorrer con un cursor")
 --como puedo guardar el nombre del equipo?

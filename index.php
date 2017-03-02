@@ -132,7 +132,6 @@
             $ruta=$obj->imagen;
             $nombre=$obj->nombre;*/
             
-            
             echo "<br>";
             echo "Estás viendo el equipo: $nombre";
             echo "<br>";
@@ -140,8 +139,6 @@
             echo "<br>";
             printf("<p>The select query returned %d rows.</p>", $result->num_rows);
             
-            
-        
             while($obj = $result->fetch_object()) {
               echo "<tr>";
               echo "<td>".$obj->id_camiseta."</a></td>";
@@ -160,9 +157,9 @@
                             <img src='ir.ico';/>
                           </a>
                         </form></td>";
-              echo "</tr>";
+             echo "</tr>";
                 /*$obj->$nombre;
-                echo "2-Estás viendo el equipo: $nombre";*/
+                */
           }
             
           $result->close();

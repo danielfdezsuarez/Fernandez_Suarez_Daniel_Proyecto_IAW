@@ -36,7 +36,6 @@
           <fieldset>
             <legend>CAMISETA</legend>
             <input type="hidden" name="id_camiseta"/>
-            <!--<span>ID_Camiseta:</span><input type="number" name="id_camiseta"><br>-->
             <span>Jugador:</span><input type="text" name="jugador"><br>
             <span>Dorsal:</span><input type="number" name="dorsal"><br>
             <span>Marca:</span><input type="text" name="marca"><br>
@@ -131,8 +130,7 @@
             
             echo "<br>";
             echo var_dump($query);
-          /*$query="INSERT INTO camiseta VALUES('', '$jugador', '$dorsal', '$marca', '$publicidad', '$temporada', '$competicion', '$target_file', '$observaciones')";
-          echo $query;*/
+          
            if ($result = $connection->query($query)) {
           
           } else {
