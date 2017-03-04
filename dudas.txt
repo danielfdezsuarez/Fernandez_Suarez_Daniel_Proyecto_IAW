@@ -1,12 +1,11 @@
--->SUSCRIPCION
--al darle al boton: (alert?, form desplegable?, redireccion normal y corriente?)
--suscripcion.php: insert en tabla alerta(function?)
--enviar mail, problema smtp(desde insertar camiseta)
+SUSCRIPCION
+-insert alerta->no guarda id_equipo
+-(insertar.php), problema mail (nada en log)
 
-INSERT ALERTA
--->no funciona id_equipo
+NOVEDADES EN PORTADA?
 
-para mostrar las camisetas("recorrer con un cursor")
---como puedo guardar el nombre del equipo?
+DISEÑO/ESTILO
+
+HOSTING
 
 -->HACER INCLUDES DE COSAS REPETITIVAS

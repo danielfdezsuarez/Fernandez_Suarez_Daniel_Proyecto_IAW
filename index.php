@@ -9,8 +9,30 @@
         height: 50px;
         width: 50px;
       }
+        #novedades{
+            background-color: lightblue;
+            width: 1000px;
+            height: 500px;
+            border: 5px solid aqua;
+            border-radius: 15px;
+        }
+        
+        #novedades img{
+            width: 250px;
+            height: 250px;
+            border: 2px solid black;
+            border-radius: 10px;
+        }
+        .largo{
+            width: 50px;
+            height: 300px;
+        };
+        .ancho{
+            width: 300px;
+            height: 50px;
+        };
     </style>
-  </head>
+    </head>   
   <body>
       <header>
         <a href="admin.php"><button>Admin</button></a>
@@ -41,7 +63,7 @@
                          printf("Connection failed: %s\n", $connection->connect_error);
                       exit();
                      }
-                     $result = $connection->query("SELECT * FROM equipo where club_seleccion='club'");
+                     $result = $connection->query("SELECT * FROM equipo where club_seleccion='club' order by nombre");
                      if ($result) {
                        while ($obj=$result->fetch_object()) {
                           $valor = $obj->id_equipo;
@@ -69,7 +91,7 @@
                          printf("Connection failed: %s\n", $connection->connect_error);
                       exit();
                      }
-                     $result = $connection->query("SELECT * FROM equipo where club_seleccion='seleccion'");
+                     $result = $connection->query("SELECT * FROM equipo where club_seleccion='seleccion' order by nombre");
                      if ($result) {
                        while ($obj=$result->fetch_object()) {
                           $valor = $obj->id_equipo;
@@ -87,10 +109,73 @@
 	      </fieldset>
         </form><br>
         
-    <?php   
-        echo "mira mis novedades";
-    ?>
-            
+    
+        
+            <div id="novedades">
+            <?php
+                echo "ULTIMAS CAMISETAS AÑADIDAS";
+                
+             
+                  $connection = new mysqli("localhost", "root", "123456", "camisetas");
+                  $connection->set_charset("utf8");
+
+                  if ($connection->connect_errno) {
+                      printf("Connection failed: %s\n", $connection->connect_error);
+                      exit();
+                  }
+
+                  if ($result = $connection->query("select * from camiseta order by id_camiseta desc limit 5;")) {
+                ?>
+
+                <form action="index.php" enctype="multipart/form-data">
+                  <table style="border:0px">
+                  
+
+                 <?php
+                      while($obj = $result->fetch_object()) {
+                          $ruta2 = $obj->imagen;
+                          /*echo "<td>
+                            <form method='get'>
+                            <a href='resultado.php?id=$obj->id_camiseta'>
+                            <img src='$ruta2';/>
+                            </a>
+                            </form></td>";*/
+                          
+                $tmpName = $_FILES['ruta2']['tmp_name'];
+                          var_dump($_FILES);
+                          var_dump($ruta2);
+                          
+
+                list($width, $height)=getimagesize($tmpName);
+
+                if($width>$height) {
+                    
+                    echo "<td class=\"largo\">
+                            <form method='get'>
+                            <a href='resultado.php?id=$obj->id_camiseta'>
+                            <img src='$ruta2';/>
+                            </a>
+                            </form></td>";
+                } else {
+                    
+                    echo "<td class=\"ancho\">
+                            <form method='get'>
+                            <a href='resultado.php?id=$obj->id_camiseta'>
+                            <img src='$ruta2';/>
+                            </a>
+                            </form></td>";
+                }
+
+                }
+                }
+                
+                
+                
+                
+            ?>
+            </div>
+    
+                </form>
             
     <?php else: ?>      
         

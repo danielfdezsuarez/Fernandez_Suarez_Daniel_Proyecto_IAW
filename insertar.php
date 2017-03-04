@@ -146,8 +146,41 @@
            echo "Fallo insert camiseta_equipo";
            exit();
           }
+            
+          $connection = new mysqli("localhost", "root", "123456", "camisetas");
+          $connection->set_charset("utf8");
+
+          if ($connection->connect_errno) {
+              printf("Connection failed: %s\n", $connection->connect_error);
+              exit();
+            }
+            
+          $query3="SELECT * from alerta";
+            if ($result = $connection->query($query3)) {
+                $obj = $result->fetch_object();
+                $id_equipo=$obj->id_equipo;
+                $mail=$obj->mail;
+            }
+        
+          
+          if ($cod_equipo==$id_equipo) {
+              
+                $to='$mail';
+                $subject='Nueva actualizacion de su suscripción';
+                $message='Hay una nueva actualización de tu susripcion';
+                
+                if( mail($to, $subject, $message)){
+                    echo "Mail enviado";
+                } else {
+                    echo "Error mail";
+                }
+                
+           } else {
+             echo "Fallo";
+                }
+            
         }
-      ?>
+        ?>
 
       <?php endif ?>      
             
