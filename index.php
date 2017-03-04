@@ -5,18 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INDEX</title>
     <style>
-      img {
-        height: 50px;
-        width: 50px;
-      }
+        body{
+            width: 90%;
+        }
+        img {
+            height: 50px;
+            width: 50px;
+        }
+        form{
+            
+            width: 90%;
+        }
         #novedades{
             background-color: lightblue;
-            width: 1000px;
-            height: 500px;
+            height: 400px;
             border: 5px solid aqua;
             border-radius: 15px;
+            overflow: auto;
+            width: 90%;
+            max-width: 1300px;
+            padding-left: 10px;
         }
-        
         #novedades img{
             width: 250px;
             height: 250px;
