@@ -13,27 +13,31 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDITAR EQUIPO</title>
+    <title>EDITAR ALERTA</title>
     <link rel="stylesheet" type="text/css" href=" ">
     <style>
-      span {
-        width: 100px;
-        display: inline-block;
-      }
-      img {
-        max-height: 900px;
-        max-width: 900px;  
-      }
+          span {
+            width: 100px;
+            display: inline-block;
+          }
+          fieldset img {
+            max-height: 900px;
+            max-width: 900px;  
+          }
+          <?php include 'css/body.css'; ?>
+          <?php include 'css/logo.css'; ?>
     </style>
   </head>
   <body>
       <header>
         <a href="index.php"><button>INDEX</button></a>
+        <a href="admin.php"><button>ADMIN</button></a>
         <a href="insertar.php"><button>INSERTAR CAMISETA</button></a>
         <a href="insertar_equipo.php"><button>INSERTAR EQUIPO</button></a>
-        <a href="login.php"><button>Login</button></a>
-        <a href="logout.php"><button>Cerrar sesion</button></a>
-      </header><br>
+        <a href="login.php"><button>LOGIN</button></a>
+        <a href="logout.php"><button>LOGOUT</button></a>
+      </header>
+      <?php include 'logo.php'; ?><br>
       
       <?php if (!isset($_POST["id_alerta"])) : ?>
 
@@ -56,7 +60,7 @@
 
         <form action="editar_alerta.php" method="post" enctype="multipart/form-data">
           <fieldset>
-            <legend>EDITAR EQUIPO</legend>
+            <legend>EDITAR ALERTA</legend>
             <span>ID_Alerta:</span><input type="text" name="id_alerta" value="<?php echo $id_alerta; ?>"><br>
             <span>Equipo:</span><select name="id_equipo" required><br>
                         <?php

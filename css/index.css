@@ -33,7 +33,7 @@ form{
     height: 50px;
 };
 form{
-    width: 300px;
+    width: 900px;
     background-color: red;
 }
 fieldset{
@@ -42,4 +42,7 @@ fieldset{
 td {
   text-align: center;
   vertical-align: middle;
+}
+#cosa{
+    background-color: red;
 }

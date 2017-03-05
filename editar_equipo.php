@@ -16,24 +16,31 @@
     <title>EDITAR EQUIPO</title>
     <link rel="stylesheet" type="text/css" href=" ">
     <style>
-      span {
-        width: 100px;
-        display: inline-block;
-      }
-      img {
-        max-height: 900px;
-        max-width: 900px;  
-      }
+        span {
+            width: 100px;
+            display: inline-block;
+        }
+        fieldset img {
+            max-height: 200px;
+            max-width: 200px;  
+        }
+        fieldset{
+            width: 500px;  
+        }
+        <?php include 'css/body.css'; ?>
+        <?php include 'css/logo.css'; ?>
     </style>
   </head>
   <body>
       <header>
         <a href="index.php"><button>INDEX</button></a>
+        <a href="admin.php"><button>ADMIN</button></a>
         <a href="insertar.php"><button>INSERTAR CAMISETA</button></a>
         <a href="insertar_equipo.php"><button>INSERTAR EQUIPO</button></a>
-        <a href="login.php"><button>Login</button></a>
-        <a href="logout.php"><button>Cerrar sesion</button></a>
-      </header><br>
+        <a href="login.php"><button>LOGIN</button></a>
+        <a href="logout.php"><button>LOGOUT</button></a>
+      </header>
+      <?php include 'logo.php'; ?><br>
       
       <?php if (!isset($_POST["id_equipo"])) : ?>
 
@@ -69,8 +76,8 @@
             <span>Nombre:</span><input type="text" name="nombre" value="<?php echo $nombre; ?>"><br>
             <span>País:</span><input type="text" name="pais" value="<?php echo $pais; ?>"><br>
             <span>Continente:</span><input type="text" name="continente" value="<?php echo $continente; ?>"><br>
-            <span>Imagen_equipo:</span><input type="file" name="imagen_equipo"><img src='<?php echo $ruta; ?>'><br>
-	    <span><input type="submit" value="Enviar"><br>
+            <span>Imagen_eq:</span><input type="file" name="imagen_equipo"><br><img src='<?php echo $ruta; ?>'><br>
+	        <span><input type="submit" value="Enviar"><br>
 	      </fieldset>
         </form><br>
 

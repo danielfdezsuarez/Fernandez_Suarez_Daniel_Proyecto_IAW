@@ -15,20 +15,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ALERTAS</title>
     <style>
-      img {
-        height: 50px;
-        width: 50px;
-      }
+        table img {
+            height: 50px;
+            width: 50px;
+        }
+        td {
+            text-align: center;
+            vertical-align: middle;
+        }
+        <?php include 'css/body.css'; ?>
+        <?php include 'css/logo.css'; ?>
     </style>
   </head>
   <body>
       <header>
         <a href="index.php"><button>INDEX</button></a>
+        <a href="admin.php"><button>ADMIN</button></a>
         <a href="insertar.php"><button>INSERTAR CAMISETA</button></a>
         <a href="insertar_equipo.php"><button>INSERTAR EQUIPO</button></a>
-        <a href="login.php"><button>Login</button></a>
-        <a href="logout.php"><button>Cerrar sesion</button></a>
+        <a href="login.php"><button>LOGIN</button></a>
+        <a href="logout.php"><button>LOGOUT</button></a>
       </header>
+      <?php include 'logo.php'; ?><br>
       
     <?php
       $connection = new mysqli("localhost", "root", "123456", "camisetas");
@@ -40,7 +48,7 @@
       }
       
       if ($result = $connection->query("select * from alerta;")) {
-          printf("<p>The select query returned %d rows.</p>", $result->num_rows);
+          //printf("<p>The select query returned %d rows.</p>", $result->num_rows);
     ?>
 
  

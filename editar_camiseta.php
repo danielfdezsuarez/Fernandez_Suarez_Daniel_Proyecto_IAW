@@ -16,24 +16,31 @@
     <title>EDITAR CAMISETA</title>
     <link rel="stylesheet" type="text/css" href=" ">
     <style>
-      span {
-        width: 100px;
-        display: inline-block;
-      }
-    img {
-        max-height: 900px;
-        max-width: 900px;  
-      }
+        span {
+            width: 100px;
+            display: inline-block;
+        }
+        fieldset img{
+            max-height: 900px;
+            max-width: 900px;  
+        }
+        fieldset{
+            width: 500px;  
+        }
+        <?php include 'css/body.css'; ?>
+        <?php include 'css/logo.css'; ?>
     </style>
   </head>
   <body>
       <header>
         <a href="index.php"><button>INDEX</button></a>
+        <a href="admin.php"><button>ADMIN</button></a>
         <a href="insertar.php"><button>INSERTAR CAMISETA</button></a>
         <a href="insertar_equipo.php"><button>INSERTAR EQUIPO</button></a>
-        <a href="login.php"><button>Login</button></a>
-        <a href="logout.php"><button>Cerrar sesion</button></a>
-      </header><br>
+        <a href="login.php"><button>LOGIN</button></a>
+        <a href="logout.php"><button>LOGOUT</button></a>
+      </header>
+      <?php include 'logo.php'; ?><br>
       
       <?php if (!isset($_POST["id_camiseta"])) : ?>
 
@@ -81,7 +88,7 @@
             <span>Temporada:</span><input type="text" name="temporada" value="<?php echo $temporada; ?>"><br>
             <span>Competición:</span><input type="text" name="competicion" value="<?php echo $competicion; ?>"><br>
             <span>Observaciones:</span><input type="text" name="observaciones" value="<?php echo $observaciones; ?>"><br>
-            <span>Imagen:</span><input type="file" name="imagen"><img src='<?php echo $ruta; ?>'><br><br>
+            <span>Imagen:</span><input type="file" name="imagen"><br><img src='<?php echo $ruta; ?>'><br><br>
                 <fieldset>
                     <legend>EQUIPO</legend>
                     <span>Equipo:</span><select name="id_equipo" required><br>

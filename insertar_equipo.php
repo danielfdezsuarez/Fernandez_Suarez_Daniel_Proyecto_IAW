@@ -16,19 +16,30 @@
     <title>INSERTAR EQUIPO</title>
     <link rel="stylesheet" type="text/css" href=" ">
     <style>
-      span {
-        width: 100px;
-        display: inline-block;
-      }
+        span {
+            width: 100px;
+            display: inline-block;
+        }
+        fieldset img{
+            max-height: 300px;
+            max-width: 00px;  
+        }
+        fieldset{
+            width: 500px;  
+        }
+        <?php include 'css/body.css'; ?>
+        <?php include 'css/logo.css'; ?>
     </style>
   </head>
   <body>
       <header>
         <a href="index.php"><button>INDEX</button></a>
+        <a href="admin.php"><button>ADMIN</button></a>
         <a href="insertar.php"><button>INSERTAR CAMISETA</button></a>
-        <a href="login.php"><button>Login</button></a>
-        <a href="logout.php"><button>Cerrar sesion</button></a>
-      </header><br>
+        <a href="login.php"><button>LOGIN</button></a>
+        <a href="logout.php"><button>LOGOUT</button></a>
+      </header>
+      <?php include 'logo.php'; ?><br>
       
       <?php if (!isset($_POST["id_equipo"])) : ?>
       
@@ -43,7 +54,7 @@
             <span>Nombre:</span><input type="text" name="nombre" required><br>
             <span>País:</span><input type="text" name="pais"><br>
             <span>Continente:</span><input type="text" name="continente"><br>
-            <span>Imagen_equipo:</span><input type="file" name="imagen_eq"><br>
+            <span>Imagen_eq:</span><input type="file" name="imagen_eq"><br>
 	    <span><input type="submit" value="Enviar"><br>
 	      </fieldset>
         </form><br>

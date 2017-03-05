@@ -12,9 +12,9 @@
   
   <body>
       <header>
-        <a href="admin.php"><button>Admin</button></a>
-        <a href="login.php"><button>Login</button></a>
-        <a href="logout.php"><button>Cerrar sesion</button></a>
+        <a href="admin.php"><button>ADMIN</button></a>
+        <a href="login.php"><button>LOGIN</button></a>
+        <a href="logout.php"><button>LOGOUT</button></a>
       </header>
       
       <?php include 'logo.php'; ?>
@@ -35,7 +35,7 @@
       
         <form action="index.php" method="post" enctype="multipart/form-data">
           <br><fieldset>
-            <span>ELEGIR EQUIPO CLUB</span>
+            <span id="cosa">ELEGIR EQUIPO CLUB</span>
               <select name="cod_equipo" required><br>
                     <?php
                       $connection = new mysqli("localhost", "root", "123456", "camisetas");
