@@ -9,8 +9,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOGIN</title>
     <link rel="stylesheet" type="text/css" href=" ">
+    <style>
+        <?php include 'css/body.css'; ?>
+    </style>  
   </head>
   <body>
+      
+      <?php include 'logo.php'; ?>
+      <style>
+      <?php include 'css/logo.css'; ?>
+      </style>  
 
     <?php
         //FORM SUBMITTED
@@ -35,7 +43,7 @@
                 //VALID LOGIN. SETTING SESSION VARS
                 $_SESSION["user"]=$_POST["user"];
                 $_SESSION["language"]="es";
-                header("Location: index.php");
+                header("Location: admin.php");
               }
           } else {
             echo "Wrong Query";

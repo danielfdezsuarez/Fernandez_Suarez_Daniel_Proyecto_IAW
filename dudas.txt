@@ -5,6 +5,7 @@ SUSCRIPCION
 NOVEDADES EN PORTADA?
 
 DISEÑO/ESTILO
+-index.php->se puede meter margen al span?
 
 HOSTING
 

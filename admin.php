@@ -13,12 +13,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAMISETA</title>
+    <link rel="stylesheet" type="text/css" href="css/admin.css">
+    <title>PANEL ADMIN</title>
     <style>
-      img {
-        height: 50px;
-        width: 50px;
-      }
+      <?php include 'css/body.css'; ?>
+      <?php include 'css/logo.css'; ?>
     </style>
   </head>
   <body>
@@ -30,6 +29,8 @@
         <a href="login.php"><button>Login</button></a>
         <a href="logout.php"><button>Cerrar sesion</button></a>
       </header>
+    
+      <?php include 'logo.php'; ?>
       
     <?php
       $connection = new mysqli("localhost", "root", "123456", "camisetas");
@@ -42,20 +43,21 @@
       
       if ($result = $connection->query("select * from camiseta join camiseta_equipo on camiseta.id_camiseta=camiseta_equipo.id_camiseta 
       join equipo on camiseta_equipo.id_equipo=equipo.id_equipo order by camiseta.id_camiseta;")) {
-          printf("<p>The select query returned %d rows.</p>", $result->num_rows);
+          //printf("<p>The select query returned %d rows.</p>", $result->num_rows);
+          echo "<br>";
     ?>
 
  
       <table style="border:1px solid black">
       <thead>
         <tr>
-          <th>ID_Camiseta</th>
-          <th>ID_Equipo</th>
+          <th>ID_C</th>
+          <th>ID_E</th>
           <th>Club/Seleccion</th>
           <th>Nombre</th>
           <th>Pais</th>
           <th>Continente</th>
-          <th>Imagen_equipo</th>
+          <th>Img_eq</th>
           <th>Editar_eq</th>
           <th>Jugador</th>
           <th>Dorsal</th>
@@ -63,7 +65,7 @@
           <th>Publicidad</th>
           <th>Temporada</th>
           <th>Competición</th>
-          <th>Imagen</th>
+          <th>Img_cam</th>
           <th>Observaciones</th>
           <th>Borrar</th>
           <th>Editar_cam</th>

@@ -1,0 +1,45 @@
+body{
+    width: 90%;
+    background-color: lightgray;
+}
+img {
+    height: 50px;
+    width: 50px;
+}
+form{
+    width: 90%;
+}
+#novedades{
+    background-color: lightblue;
+    border: 5px solid aqua;
+    border-radius: 15px;
+    overflow: auto;
+    width: 90%;
+    max-width: 1300px;
+    padding-left: 10px;
+}
+#novedades img{
+    width: 250px;
+    height: 250px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+.largo{
+    width: 50px;
+    height: 300px;
+};
+.ancho{
+    width: 300px;
+    height: 50px;
+};
+form{
+    width: 300px;
+    background-color: red;
+}
+fieldset{
+    width: 700px;
+}
+td {
+  text-align: center;
+  vertical-align: middle;
+}

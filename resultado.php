@@ -4,27 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" type="text/css" href=" ">
+    <link rel="stylesheet" type="text/css" href="css/resultado.css">
     <style>
-      span {
-        width: 100px;
-        display: inline-block;
-        }
-      img {
-        max-height: 900px;
-        max-width: 900px;  
-        }
-      .boton {
-        background-color: sandybrown;
-        color: white;
-        }
-      
+      <?php include 'css/body.css'; ?>
+      <?php include 'css/logo.css'; ?>
     </style>
   </head>
   <body>
       <header>
         <a href="index.php"><button>INDEX</button></a>
-        <a href="login.php"><button>Login</button></a>
         
           <?php if (!isset($_POST["id_camiseta"])) : ?>
 
@@ -42,9 +30,11 @@
                 $obj = $result->fetch_object();
                 $id_equipo=$obj->id_equipo;
 
-                echo "<a href='suscripcion.php?id=$obj->id_equipo'><button class='boton'>Suscribirse a las novedades de este equipo</button></a></header><br>";  
+                echo "<a href='suscripcion.php?id=$obj->id_equipo'><button class='boton'>Suscribirse a las novedades de este equipo</button></a></header>";  
             }
-            
+          
+            include 'logo.php';
+          
             $query="SELECT * FROM camiseta WHERE id_camiseta='$cod'";
             if ($result = $connection->query($query)) {
                 $obj = $result->fetch_object();
@@ -75,21 +65,21 @@
       
           ?>
         
-        <form action="resultado.php" method="post" enctype="multipart/form-data">
-          <fieldset>
-            <legend>//</legend>
-            <input type="hidden" value="<?php echo $cod; ?>" name="id_camiseta"/>
-            <span>Jugador:</span><input type="text" name="jugador" value="<?php echo $jugadormayus; ?>"><br>
-            <span>Dorsal:</span><input type="text" name="dorsal" value="<?php echo $dorsal; ?>"><br>
-            <span>Marca:</span><input type="text" name="marca" value="<?php echo $marcamayus; ?>"><br>
-            <span>Publicidad:</span><input type="text" name="publicidad" value="<?php echo $publicidadmayus; ?>"><br>
-            <span>Temporada:</span><input type="text" name="temporada" value="<?php echo $temporada; ?>"><br>
-            <span>Competición:</span><input type="text" name="competicion" value="<?php echo $competicionmayus; ?>"><br>
-            <span>Observaciones:</span><input type="text" name="observaciones" value="<?php echo $observacionesmayus; ?>"><br><br>
-            <img src='<?php echo $ruta; ?>'>
-          </fieldset>
-        </form>
-
+            <div id="imagen">  
+                <img src='<?php echo $ruta; ?>'>
+            </div>
+            <div id="resultado">
+                <input type="hidden" value="<?php echo $cod; ?>" name="id_camiseta"/>
+                <span>Jugador:</span><?php echo $jugadormayus; ?><br>
+                <span>Dorsal:</span><?php echo $dorsal; ?><br>
+                <span>Marca:</span><?php echo $marcamayus; ?><br>
+                <span>Publicidad:</span><?php echo $publicidadmayus; ?><br>
+                <span>Temporada:</span><?php echo $temporada; ?><br>
+                <span>Competición:</span><?php echo $competicionmayus; ?><br>
+                <span>Observaciones:</span><?php echo $observacionesmayus; ?><br><br>
+            </div>
+            
+          
       <?php else: ?>
     
       <?php endif ?>

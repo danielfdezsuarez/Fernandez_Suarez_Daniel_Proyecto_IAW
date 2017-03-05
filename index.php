@@ -4,50 +4,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INDEX</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
     <style>
-        body{
-            width: 90%;
-        }
-        img {
-            height: 50px;
-            width: 50px;
-        }
-        form{
-            
-            width: 90%;
-        }
-        #novedades{
-            background-color: lightblue;
-            height: 400px;
-            border: 5px solid aqua;
-            border-radius: 15px;
-            overflow: auto;
-            width: 90%;
-            max-width: 1300px;
-            padding-left: 10px;
-        }
-        #novedades img{
-            width: 250px;
-            height: 250px;
-            border: 2px solid black;
-            border-radius: 10px;
-        }
-        .largo{
-            width: 50px;
-            height: 300px;
-        };
-        .ancho{
-            width: 300px;
-            height: 50px;
-        };
+      <?php include 'css/logo.css'; ?>
     </style>
-    </head>   
+  </head>   
+  
   <body>
       <header>
         <a href="admin.php"><button>Admin</button></a>
         <a href="login.php"><button>Login</button></a>
         <a href="logout.php"><button>Cerrar sesion</button></a>
       </header>
+      
+      <?php include 'logo.php'; ?>
+      
       
     <?php
       $connection = new mysqli("localhost", "root", "123456", "camisetas");
@@ -120,28 +91,24 @@
         
     
         
-            <div id="novedades">
-            <?php
-                echo "ULTIMAS CAMISETAS AÑADIDAS";
-                
-             
-                  $connection = new mysqli("localhost", "root", "123456", "camisetas");
-                  $connection->set_charset("utf8");
+        <div id="novedades">
+        <?php
+            echo "ULTIMAS CAMISETAS AÑADIDAS";
+            $connection = new mysqli("localhost", "root", "123456", "camisetas");
+            $connection->set_charset("utf8");
 
-                  if ($connection->connect_errno) {
-                      printf("Connection failed: %s\n", $connection->connect_error);
-                      exit();
-                  }
+            if ($connection->connect_errno) {
+                printf("Connection failed: %s\n", $connection->connect_error);
+                exit();
+            }
 
-                  if ($result = $connection->query("select * from camiseta order by id_camiseta desc limit 5;")) {
-                ?>
+            if ($result = $connection->query("select * from camiseta order by id_camiseta desc limit 5;")) {
+        ?>
 
-                <form action="index.php" enctype="multipart/form-data">
-                  <table style="border:0px">
-                  
-
-                 <?php
-                      while($obj = $result->fetch_object()) {
+            <form action="index.php" enctype="multipart/form-data">
+              <table style="border:0px">
+                  <?php
+                    while($obj = $result->fetch_object()) {
                           $ruta2 = $obj->imagen;
                           /*echo "<td>
                             <form method='get'>
@@ -149,59 +116,51 @@
                             <img src='$ruta2';/>
                             </a>
                             </form></td>";*/
-                          
-                $tmpName = $_FILES['ruta2']['tmp_name'];
-                          var_dump($_FILES);
-                          var_dump($ruta2);
-                          
 
-                list($width, $height)=getimagesize($tmpName);
+                    $tmpName = $_FILES['ruta2']['tmp_name'];
+                          //var_dump($_FILES);
+                          //var_dump($ruta2);
 
-                if($width>$height) {
-                    
-                    echo "<td class=\"largo\">
+
+                    list($width, $height)=getimagesize($tmpName);
+
+                    if($width>$height) {
+                        echo "<td class=\"largo\">
                             <form method='get'>
                             <a href='resultado.php?id=$obj->id_camiseta'>
                             <img src='$ruta2';/>
                             </a>
                             </form></td>";
-                } else {
-                    
-                    echo "<td class=\"ancho\">
+                    } else {
+                        echo "<td class=\"ancho\">
                             <form method='get'>
                             <a href='resultado.php?id=$obj->id_camiseta'>
                             <img src='$ruta2';/>
                             </a>
                             </form></td>";
-                }
+                    }
 
+                    }
                 }
-                }
-                
-                
-                
-                
-            ?>
-            </div>
-    
-                </form>
-            
-    <?php else: ?>      
-        
-        <table style="border:1px solid black">
-            <thead>
-                <tr>
-                  <th>ID_Camiseta</th>
-                  <th>Jugador</th>
-                  <th>Dorsal</th>
-                  <th>Marca</th>
-                  <th>Publicidad</th>
-                  <th>Temporada</th>
-                  <th>Competición</th>
-                  <th>Imagen</th>
-                  <th>Observaciones</th>
-            </thead>    
-            
+                  ?>
+            </form>
+        </div>
+
+        <?php else: ?>
+            <br>
+            <table style="border:1px solid black">
+                <thead>
+                    <tr>
+                      <th>Jugador</th>
+                      <th>Dorsal</th>
+                      <th>Marca</th>
+                      <th>Publicidad</th>
+                      <th>Temporada</th>
+                      <th>Competición</th>
+                      <th>Imagen</th>
+                      <th>Observaciones</th>
+                      <th>Ir</th>
+                </thead>    
             
         <?php
         
@@ -214,28 +173,12 @@
         
         $query="select * from camiseta join camiseta_equipo on camiseta.id_camiseta=camiseta_equipo.id_camiseta join equipo on camiseta_equipo.id_equipo=equipo.id_equipo WHERE equipo.id_equipo='$cod'";
         if ($result = $connection->query($query)) {
-            /*$obj = $result->fetch_object();
-            $id_camiseta=$obj->id_camiseta;
-            $jugador=$obj->jugador;
-            $dorsal=$obj->dorsal;
-            $marca=$obj->marca;
-            $publicidad=$obj->publicidad;
-            $temporada=$obj->temporada;
-            $competicion=$obj->competicion;
-            $observaciones=$obj->observaciones;
-            $ruta=$obj->imagen;
-            $nombre=$obj->nombre;*/
-            
-            echo "<br>";
-            echo "Estás viendo el equipo: $nombre";
-            echo "<br>";
-            echo var_dump($query);
-            echo "<br>";
-            printf("<p>The select query returned %d rows.</p>", $result->num_rows);
+            //echo var_dump($query);
+            //printf("<p>The select query returned %d rows.</p>", $result->num_rows);
             
             while($obj = $result->fetch_object()) {
               echo "<tr>";
-              echo "<td>".$obj->id_camiseta."</a></td>";
+              //echo "<td>".$obj->id_camiseta."</a></td>";
               echo "<td>".$obj->jugador."</td>";
               echo "<td>".$obj->dorsal."</td>";
               echo "<td>".$obj->marca."</td>";
@@ -252,8 +195,7 @@
                           </a>
                         </form></td>";
              echo "</tr>";
-                /*$obj->$nombre;
-                */
+                
           }
             
           $result->close();
