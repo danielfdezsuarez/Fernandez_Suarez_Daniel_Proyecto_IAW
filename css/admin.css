@@ -6,3 +6,7 @@ td {
     text-align: center;
     vertical-align: middle;
 }
+table {
+    width:90%;
+    font-size: 90%;
+}
