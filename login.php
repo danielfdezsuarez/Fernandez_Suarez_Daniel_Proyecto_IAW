@@ -21,7 +21,6 @@
       </style>  
 
     <?php
-        //FORM SUBMITTED
         if (isset($_POST["user"])) {
           $connection = new mysqli("localhost", "root", "123456", "camisetas");
           
@@ -29,14 +28,10 @@
               printf("Connection failed: %s\n", $connection->connect_error);
               exit();
           }
-          //MAKING A SELECT QUERY
-          //Password coded with md5 at the database. Look for better options
-          $consulta="select * from usuario where user='".$_POST["user"]."' and password='".$_POST["password"]."'";
-          //Test if the query was correct
-          //SQL Injection Possible
-          //Check http://php.net/manual/es/mysqli.prepare.php for more security
+          
+          $consulta="select * from usuario where user='".$_POST["user"]."' and password=md5(".$_POST["password"].")";
+          
           if ($result = $connection->query($consulta)) {
-              //No rows returned
               if ($result->num_rows===0) {
                 echo "LOGIN INVALIDO";
               } else {

@@ -1,22 +1,4 @@
-SUSCRIPCION
--insert alerta->no guarda id_equipo
--(insertar.php), problema mail (nada en log)
-
-NOVEDADES EN PORTADA
--que cada una pueda tener su tamaño?
-
-DISEÑO/ESTILO
--index.php->se puede editar el span? (desde inspeccionar elemento si deja modificarlo, con css no lo coge)
-
-TABLA USUARIOS
--tengo que entrar desde web?
-
 BORRAR
 -como borrar la imagen de la carpeta? unlink()
 
 HOSTING
-
-HACER INCLUDES DE COSAS REPETITIVAS
-
-DEBES PODER CREAR UN NUEVO USUARIO//ACCEDER A LA TABLA USUARIOS
-ENCRIPTAR CONTRASEÑAS

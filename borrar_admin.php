@@ -13,7 +13,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BORRAR ALERTA</title>
+    <title>BORRAR ADMIN</title>
   </head>
   <body>
       <?php
@@ -33,15 +33,15 @@
       ?>
 
       <?php
-          $consulta="DELETE FROM alerta WHERE id_alerta=".$_GET['id'];
+          $consulta="DELETE FROM usuario WHERE id_user=".$_GET['id'];
           
           $result=mysqli_query($connection,$consulta);
           
           if($result==false){
               echo "Error consulta";
           } else {
-              echo "alerta Borrado correctamente";
-              header("Refresh:2; url=alertas.php");
+              echo "admin Borrado correctamente";
+              header("Refresh:2; url=usuarios.php");
           }
       }
       ?>

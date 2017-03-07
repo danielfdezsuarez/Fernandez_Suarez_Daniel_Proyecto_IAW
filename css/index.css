@@ -6,21 +6,18 @@ img {
     height: 50px;
     width: 50px;
 }
-form{
-    width: 90%;
-}
 #novedades{
-    background-color: lightblue;
-    border: 5px solid aqua;
+    background-color: darkgrey;
+    border: 5px solid dimgrey;
     border-radius: 15px;
     overflow: auto;
-    width: 90%;
-    max-width: 1300px;
+    width: 100%;
+    max-width: 1150px;
     padding-left: 10px;
 }
 #novedades img{
-    width: 250px;
-    height: 250px;
+    width: 220px;
+    height: 220px;
     border: 2px solid black;
     border-radius: 10px;
 }
@@ -37,12 +34,9 @@ form{
     background-color: red;
 }
 fieldset{
-    width: 700px;
+    max-width: 300px;
 }
 td {
   text-align: center;
   vertical-align: middle;
-}
-#cosa{
-    background-color: red;
 }

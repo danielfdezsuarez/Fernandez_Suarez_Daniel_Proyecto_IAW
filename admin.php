@@ -26,6 +26,8 @@
         <a href="insertar.php"><button>INSERTAR CAMISETA</button></a>
         <a href="insertar_equipo.php"><button>INSERTAR EQUIPO</button></a>
         <a href="alertas.php"><button>ALERTAS</button></a>
+        <a href="usuarios.php"><button>USUARIOS</button></a>
+        <a href="newadmin.php"><button>NEWADMIN</button></a>
         <a href="login.php"><button>LOGIN</button></a>
         <a href="logout.php"><button>LOGOUT</button></a>
       </header>

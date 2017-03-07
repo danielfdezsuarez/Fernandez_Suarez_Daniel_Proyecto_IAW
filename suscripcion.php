@@ -17,14 +17,14 @@
       <?php if (!isset($_POST["id_equipo"])) : ?>
 
         <?php 
-        $cod=$_GET['id_equipo'];
+        $cod=$_GET['id'];
         $connection = new mysqli("localhost", "root", "123456", "camisetas");
         if ($connection->connect_errno) {
             printf("Connection failed: %s\n", $connection->connect_error);
             exit();
         }
 
-        var_dump($cod);
+        //var_dump($cod);
         
         $query="SELECT * from equipo where id_equipo='$cod'";
             if ($result = $connection->query($query)) {
@@ -37,7 +37,7 @@
           <fieldset>
             <legend>SUSCRIPCION</legend>
             <input type="hidden" name="id_alerta"/>
-            <input type="hidden" name="id_equipo"/>
+            <input type="hidden" name="id_equipo" value="<?php echo $cod; ?>"/>
             <span>Mail:</span><input type="email" name="mail"><br>
             <br><span><input type="submit" value="Enviar"><br>
 	      </fieldset>
@@ -57,33 +57,15 @@
           $id_equipo=$_POST['id_equipo'];
           $mail=$_POST['mail'];
           
-          $query3="SET FOREIGN_KEY_CHECKS=0";
-            if ($result = $connection->query($query3)) {
-          
-          } else {
-          echo "Fallo check";
-          exit();
-          }
-            
           $query2="INSERT INTO alerta VALUES('', '$id_equipo', '$mail')";
             var_dump($query2);
             if ($result = $connection->query($query2)) {
-          
+                header("Refresh:2; url=index.php");
           } else {
           echo "Fallo insert query";
           exit();
           }
-        
-          $query4="SET FOREIGN_KEY_CHECKS=1";
-            if ($result = $connection->query($query4)) {
-          
-          } else {
-          echo "Fallo check2";
-          exit();
-          }
-          
-      ?>
-            
+        ?>
             
       <?php endif ?>
 

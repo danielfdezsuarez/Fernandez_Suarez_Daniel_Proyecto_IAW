@@ -35,7 +35,7 @@
       
         <form action="index.php" method="post" enctype="multipart/form-data">
           <br><fieldset>
-            <span id="cosa">ELEGIR EQUIPO CLUB</span>
+            <span id="cosa">ELEGIR CLUB</span>
               <select name="cod_equipo" required><br>
                     <?php
                       $connection = new mysqli("localhost", "root", "123456", "camisetas");
@@ -63,7 +63,7 @@
             
         <form action="index.php" method="post" enctype="multipart/form-data">
           <fieldset>
-            <span>ELEGIR EQUIPO SELECCIÓN</span>
+            <span>ELEGIR SELECCIÓN</span>
               <select name="cod_equipo" required><br>
                     <?php
                       $connection = new mysqli("localhost", "root", "123456", "camisetas");
@@ -110,38 +110,14 @@
                   <?php
                     while($obj = $result->fetch_object()) {
                           $ruta2 = $obj->imagen;
-                          /*echo "<td>
-                            <form method='get'>
-                            <a href='resultado.php?id=$obj->id_camiseta'>
-                            <img src='$ruta2';/>
-                            </a>
-                            </form></td>";*/
-
-                    $tmpName = $_FILES['ruta2']['tmp_name'];
-                          //var_dump($_FILES);
-                          //var_dump($ruta2);
-
-
-                    list($width, $height)=getimagesize($tmpName);
-
-                    if($width>$height) {
-                        echo "<td class=\"largo\">
-                            <form method='get'>
-                            <a href='resultado.php?id=$obj->id_camiseta'>
-                            <img src='$ruta2';/>
-                            </a>
-                            </form></td>";
-                    } else {
-                        echo "<td class=\"ancho\">
+                          echo "<td>
                             <form method='get'>
                             <a href='resultado.php?id=$obj->id_camiseta'>
                             <img src='$ruta2';/>
                             </a>
                             </form></td>";
                     }
-
-                    }
-                }
+            }
                   ?>
             </form>
         </div>
