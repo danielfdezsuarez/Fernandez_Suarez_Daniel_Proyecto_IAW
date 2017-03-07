@@ -36,6 +36,9 @@
         <a href="index.php"><button>INDEX</button></a>
         <a href="admin.php"><button>ADMIN</button></a>
         <a href="insertar.php"><button>INSERTAR CAMISETA</button></a>
+        <a href="alertas.php"><button>ALERTAS</button></a>
+        <a href="usuarios.php"><button>USUARIOS</button></a>
+        <a href="newadmin.php"><button>NEWADMIN</button></a>
         <a href="login.php"><button>LOGIN</button></a>
         <a href="logout.php"><button>LOGOUT</button></a>
       </header>
@@ -104,7 +107,7 @@
           $query3="INSERT INTO equipo VALUES('$id_equipo', '$club_seleccion', '$nombre', '$pais', '$continente', '$target_fi')";
           echo $query3;
            if ($result = $connection->query($query3)) {
-               header("Refresh:2; url=index.php");
+               header("Refresh:2; url=admin.php");
           } else {
            echo "Fallo insert equipo";
            exit();

@@ -14,8 +14,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BORRAR ALERTA</title>
+    <style>
+        <?php include 'css/body.css'; ?>
+        <?php include 'css/logo.css'; ?>
+    </style>
   </head>
   <body>
+      
+      <?php include 'logo.php'; ?><br>
+      
       <?php
       
       if (!isset($_GET['id'])) {
@@ -40,7 +47,7 @@
           if($result==false){
               echo "Error consulta";
           } else {
-              echo "alerta Borrado correctamente";
+              echo "Alerta borrada correctamente";
               header("Refresh:2; url=alertas.php");
           }
       }

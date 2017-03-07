@@ -13,9 +13,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>BORRAR</title>
+    <style>
+        <?php include 'css/body.css'; ?>
+        <?php include 'css/logo.css'; ?>
+    </style>
   </head>
   <body>
+      
+      <?php include 'logo.php'; ?><br>
+      
       <?php
       
       if (!isset($_GET['id'])) {
@@ -43,7 +50,7 @@
               echo "Error consulta";
           } else {
               echo "Borrado correctamente";
-              header("Refresh:2; url=index.php");
+              header("Refresh:2; url=admin.php");
           }
       }
       ?>

@@ -14,7 +14,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/usuarios.css">
-    <title>USERS/ADMIN</title>
+    <title>USUARIOS</title>
     <style>
       <?php include 'css/body.css'; ?>
       <?php include 'css/logo.css'; ?>
@@ -26,10 +26,9 @@
         <a href="insertar.php"><button>INSERTAR CAMISETA</button></a>
         <a href="insertar_equipo.php"><button>INSERTAR EQUIPO</button></a>
         <a href="alertas.php"><button>ALERTAS</button></a>
+        <a href="newadmin.php"><button>NEWADMIN</button></a>
         <a href="login.php"><button>LOGIN</button></a>
         <a href="logout.php"><button>LOGOUT</button></a>
-        <a href="newadmin.php"><button>NEWADMIN</button></a>
-        <a href="editaradmin.php"><button>EDITADMIN</button></a>
       </header>
     
       <?php include 'logo.php'; ?>

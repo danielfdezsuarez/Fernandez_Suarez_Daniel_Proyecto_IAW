@@ -14,8 +14,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BORRAR ADMIN</title>
+    <style>
+      <?php include 'css/body.css'; ?>
+      <?php include 'css/logo.css'; ?>
+    </style>
   </head>
   <body>
+      
+      <?php include 'logo.php'; ?>
+      
       <?php
       
       if (!isset($_GET['id'])) {

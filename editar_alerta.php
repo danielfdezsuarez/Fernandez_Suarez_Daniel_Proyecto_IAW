@@ -20,9 +20,8 @@
             width: 100px;
             display: inline-block;
           }
-          fieldset img {
-            max-height: 900px;
-            max-width: 900px;  
+          fieldset {
+            width: 300px;  
           }
           <?php include 'css/body.css'; ?>
           <?php include 'css/logo.css'; ?>
@@ -34,6 +33,8 @@
         <a href="admin.php"><button>ADMIN</button></a>
         <a href="insertar.php"><button>INSERTAR CAMISETA</button></a>
         <a href="insertar_equipo.php"><button>INSERTAR EQUIPO</button></a>
+        <a href="usuarios.php"><button>USUARIOS</button></a>
+        <a href="newadmin.php"><button>NEWADMIN</button></a>
         <a href="login.php"><button>LOGIN</button></a>
         <a href="logout.php"><button>LOGOUT</button></a>
       </header>
@@ -117,7 +118,7 @@
         } else {
             echo "actualizado correctamente query2";
             echo var_dump($consulta);
-            header("Refresh:2; url=index.php");
+            header("Refresh:2; url=alertas.php");
         }
         
         ?>
