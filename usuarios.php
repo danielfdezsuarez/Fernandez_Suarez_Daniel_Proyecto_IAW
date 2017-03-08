@@ -22,11 +22,8 @@
   </head>
   <body>
       <header>
-        <a href="index.php"><button>INDEX</button></a>
-        <a href="insertar.php"><button>INSERTAR CAMISETA</button></a>
-        <a href="insertar_equipo.php"><button>INSERTAR EQUIPO</button></a>
-        <a href="alertas.php"><button>ALERTAS</button></a>
-        <a href="newadmin.php"><button>NEWADMIN</button></a>
+        <a href="panel_admin.php"><button>PANEL ADMIN</button></a>
+        <a href="insertar_usuario.php"><button>INSERTAR USUARIO</button></a>
         <a href="login.php"><button>LOGIN</button></a>
         <a href="logout.php"><button>LOGOUT</button></a>
       </header>
@@ -51,7 +48,7 @@
       <table style="border:1px solid black">
       <thead>
         <tr>
-          <th>ID_USER</th>
+          <!--<th>ID_USER</th>-->
           <th>User</th>
           <!--<th>Password</th>-->
           <th>Mail</th>
@@ -63,19 +60,19 @@
      <?php
           while($obj = $result->fetch_object()) {
               echo "<tr>";
-              echo "<td>".$obj->id_user."</a></td>";
+              //echo "<td>".$obj->id_user."</a></td>";
               echo "<td>".$obj->user."</td>";
               //echo "<td>".$obj->password."</td>";
               echo "<td>".$obj->mail."</td>";
               echo "<td>
                         <form method='get'>
-                          <a href='borrar_admin.php?id=$obj->id_user'>
+                          <a href='borrar_usuario.php?id=$obj->id_user'>
                             <img src='borrar.png';/>
                           </a>
                         </form></td>";
               echo "<td>
                         <form method='get'>
-                          <a href='editar_admin.php?id=$obj->id_user'>
+                          <a href='editar_usuario.php?id=$obj->id_user'>
                             <img src='editar.png';/>
                           </a>
                         </form></td>";

@@ -13,7 +13,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BORRAR</title>
+    <title>BORRAR EQUIPO</title>
     <style>
         <?php include 'css/body.css'; ?>
         <?php include 'css/logo.css'; ?>
@@ -42,11 +42,8 @@
           
       if ($result3 = $connection->query("SELECT imagen_equipo FROM equipo WHERE id_equipo=".$_GET['id'].";")) {
            $obj = $result3->fetch_object();
-           var_dump($obj);
            $imagen_equipo=$obj->imagen_equipo;
            $result3->close();
-           unset($obj);
-           var_dump($imagen_equipo);
       }    
       ?>
 
@@ -62,8 +59,7 @@
           } else {
               unlink($imagen_equipo);
               echo "Borrado correctamente";
-              //echo "$imagen_equipo";
-              header("Refresh:2; url=admin.php");
+              header("Refresh:2; url=panel_admin.php");
           }
       }
       ?>

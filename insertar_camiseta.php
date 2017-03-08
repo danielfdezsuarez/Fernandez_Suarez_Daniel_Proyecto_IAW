@@ -33,12 +33,10 @@
   </head>
   <body>
       <header>
-        <a href="index.php"><button>INDEX</button></a>
-        <a href="admin.php"><button>ADMIN</button></a>
+        <a href="panel_admin.php"><button>PANEL ADMIN</button></a>
+        <a href="camisetas.php"><button>CAMISETAS</button></a>
+        <a href="equipos.php"><button>EQUIPOS</button></a>
         <a href="insertar_equipo.php"><button>INSERTAR EQUIPO</button></a>
-        <a href="alertas.php"><button>ALERTAS</button></a>
-        <a href="usuarios.php"><button>USUARIOS</button></a>
-        <a href="newadmin.php"><button>NEWADMIN</button></a>
         <a href="login.php"><button>LOGIN</button></a>
         <a href="logout.php"><button>LOGOUT</button></a>
       </header>
@@ -46,7 +44,7 @@
       
       <?php if (!isset($_POST["id_camiseta"])) : ?>
       
-        <form action="insertar.php" method="post" enctype="multipart/form-data">
+        <form action="insertar_camiseta.php" method="post" enctype="multipart/form-data">
           <fieldset>
             <legend>CAMISETA</legend>
             <input type="hidden" name="id_camiseta"/>
@@ -111,7 +109,7 @@
         if ($valid) {
           //Put the file in its place
           move_uploaded_file($tmp_file, $target_file);
-          echo "PRODUCT ADDED";
+          echo "Imagen añadida";
           $connection = new mysqli("localhost", "root", "123456", "camisetas");
           
           $connection->set_charset("uft8");
@@ -142,25 +140,23 @@
 
           $query=$query.",'$marca', '$publicidad', '$temporada', '$competicion', '$target_file', '$observaciones')";
             
-            echo "<br>";
-            echo var_dump($query);
-          
-           if ($result = $connection->query($query)) {
-          
+          if ($result = $connection->query($query)) {
+          echo "Camiseta añadida correctamente";
           } else {
-           echo "Fallo insert camiseta";
-           exit();
+          echo "Fallo insert camiseta";
+          exit();
           }
             
           $query2="INSERT INTO camiseta_equipo VALUES($connection->insert_id, '$cod_equipo')";
-          echo $query2;
-           if ($result = $connection->query($query2)) {
-               header("Refresh:2; url=admin.php");
+          if ($result = $connection->query($query2)) {
+              echo "camiseta_equipo añadido correctamente";
+              header("Refresh:2; url=panel_admin.php");
           } else {
-           echo "Fallo insert camiseta_equipo";
-           exit();
+          echo "Fallo insert camiseta_equipo";
+          exit();
           }
-            
+          
+          /*  
           $connection = new mysqli("localhost", "root", "123456", "camisetas");
           $connection->set_charset("utf8");
 
@@ -168,7 +164,7 @@
               printf("Connection failed: %s\n", $connection->connect_error);
               exit();
             }
-          /*  
+          
           $query3="SELECT * from alerta";
             if ($result = $connection->query($query3)) {
                 $obj = $result->fetch_object();

@@ -33,13 +33,11 @@
   </head>
   <body>
       <header>
-        <a href="index.php"><button>INDEX</button></a>
-        <a href="admin.php"><button>ADMIN</button></a>
-        <a href="insertar.php"><button>INSERTAR CAMISETA</button></a>
+        <a href="panel_admin.php"><button>PANEL ADMIN</button></a>
+        <a href="camisetas.php"><button>CAMISETAS</button></a>
+        <a href="equipos.php"><button>EQUIPOS</button></a>
+        <a href="insertar_camiseta.php"><button>INSERTAR CAMISETA</button></a>
         <a href="insertar_equipo.php"><button>INSERTAR EQUIPO</button></a>
-        <a href="alertas.php"><button>ALERTAS</button></a>
-        <a href="usuarios.php"><button>USUARIOS</button></a>
-        <a href="newadmin.php"><button>NEWADMIN</button></a>
         <a href="login.php"><button>LOGIN</button></a>
         <a href="logout.php"><button>LOGOUT</button></a>
       </header>
@@ -127,7 +125,6 @@
       <?php else: ?>
 
         <?php
-        
         $valid= true;
         //var_dump($_FILES);
             
@@ -156,7 +153,7 @@
         if ($valid) {
           //Put the file in its place
           move_uploaded_file($tmp_file, $target_file);
-          echo "PRODUCT ADDED";    
+          echo "Imagen añadida";    
             
         $connection = new mysqli("localhost", "root", "123456", "camisetas");
         if ($connection->connect_errno) {
@@ -202,8 +199,7 @@
             echo "WRONG QUERY";
             echo var_dump($query3);
         } else {
-            echo "actualizado correctamente query3";
-            echo var_dump($query3);
+            echo "Camiseta actualizada correctamente";
         }
             
         $query4="Update camiseta_equipo SET 
@@ -214,9 +210,8 @@
         if (!$result) {
             echo "WRONG QUERY";
         } else {
-            echo "actualizado correctamente query4";
-            echo var_dump($query4);
-            header("Refresh:2; url=admin.php");
+            echo "camiseta_equipo actualizada correctamente";
+            header("Refresh:2; url=panel_admin.php");
         }
         }
         ?>

@@ -29,12 +29,8 @@
   </head>
   <body>
       <header>
-        <a href="index.php"><button>INDEX</button></a>
-        <a href="admin.php"><button>ADMIN</button></a>
-        <a href="insertar.php"><button>INSERTAR CAMISETA</button></a>
-        <a href="insertar_equipo.php"><button>INSERTAR EQUIPO</button></a>
-        <a href="usuarios.php"><button>USUARIOS</button></a>
-        <a href="newadmin.php"><button>NEWADMIN</button></a>
+        <a href="panel_admin.php"><button>PANEL ADMIN</button></a>
+        <a href="alertas.php"><button>ALERTAS</button></a>
         <a href="login.php"><button>LOGIN</button></a>
         <a href="logout.php"><button>LOGOUT</button></a>
       </header>
@@ -53,7 +49,7 @@
         $query="SELECT * FROM alerta WHERE id_alerta='$cod'";
         if ($result = $connection->query($query)) {
             $obj = $result->fetch_object();
-            $id_alerta=$obj->id_alerta;
+            //$id_alerta=$obj->id_alerta;
             $id_equipo=$obj->id_equipo;
             $mail=$obj->mail;
         }
@@ -62,7 +58,7 @@
         <form action="editar_alerta.php" method="post" enctype="multipart/form-data">
           <fieldset>
             <legend>EDITAR ALERTA</legend>
-            <span>ID_Alerta:</span><input type="text" name="id_alerta" value="<?php echo $id_alerta; ?>"><br>
+            <input type="hidden" value="<?php echo $cod; ?>" name="id_alerta"/>
             <span>Equipo:</span><select name="id_equipo" required><br>
                         <?php
                           $connection = new mysqli("localhost", "root", "123456", "camisetas");
@@ -89,7 +85,7 @@
                         ?>
                         </select><br>
               <span>Mail:</span><input type="text" name="mail" value="<?php echo $mail; ?>"><br>
-	    <span><input type="submit" value="Enviar"><br>
+	       <span><input type="submit" value="Enviar"><br>
 	      </fieldset>
         </form><br>
 
@@ -116,8 +112,7 @@
             echo "WRONG QUERY";
             echo var_dump($consulta);
         } else {
-            echo "actualizado correctamente query2";
-            echo var_dump($consulta);
+            echo "Alerta actualizada correctamente";
             header("Refresh:2; url=alertas.php");
         }
         

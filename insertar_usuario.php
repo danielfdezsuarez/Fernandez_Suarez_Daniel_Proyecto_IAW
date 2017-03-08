@@ -14,7 +14,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/admin.css">
-    <title>NUEVO ADMIN</title>
+    <title>INSERTAR USUARIO</title>
     <style>
       span {
         width: 100px;
@@ -29,11 +29,7 @@
   </head>
   <body>
       <header>
-        <a href="index.php"><button>INDEX</button></a>
-        <a href="admin.php"><button>ADMIN</button></a>
-        <a href="insertar.php"><button>INSERTAR CAMISETA</button></a>
-        <a href="insertar_equipo.php"><button>INSERTAR EQUIPO</button></a>
-        <a href="alertas.php"><button>ALERTAS</button></a>
+        <a href="panel_admin.php"><button>PANEL ADMIN</button></a>
         <a href="usuarios.php"><button>USUARIOS</button></a>
         <a href="login.php"><button>LOGIN</button></a>
         <a href="logout.php"><button>LOGOUT</button></a>
@@ -52,9 +48,9 @@
 
         ?>
       
-          <form action="newadmin.php" method="post" enctype="multipart/form-data">
+          <form action="insertar_usuario.php" method="post" enctype="multipart/form-data">
               <fieldset>
-                <legend>NUEVO ADMIN</legend>
+                <legend>INSERTAR USUARIO</legend>
                     <input type="hidden" name="id_user"/>
                     <span>Usuario:</span><input type="text" name="user" required><br>
                     <span>Password:</span><input type="password" name="password" required><br>
@@ -79,11 +75,9 @@
           $mail=$_POST['mail'];
           
           $query="INSERT INTO usuario VALUES('', '$user', md5('$password'), '$mail')";
-            
-          echo var_dump($query);
-          
           if ($result = $connection->query($query)) {
-                header("Refresh:2; url=usuarios.php");
+              echo "Usuario añadido correctamente";
+              header("Refresh:2; url=usuarios.php");
           } else {
            echo "Fallo insert usuario";
            exit();

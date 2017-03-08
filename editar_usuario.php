@@ -13,7 +13,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDITAR ADMIN</title>
+    <title>EDITAR USUARIO</title>
     <link rel="stylesheet" type="text/css" href=" ">
     <style>
           span {
@@ -30,12 +30,8 @@
   </head>
   <body>
       <header>
-        <a href="index.php"><button>INDEX</button></a>
-        <a href="admin.php"><button>ADMIN</button></a>
-        <a href="insertar.php"><button>INSERTAR CAMISETA</button></a>
-        <a href="insertar_equipo.php"><button>INSERTAR EQUIPO</button></a>
-        <a href="alertas.php"><button>ALERTAS</button></a>
-        <a href="newadmin.php"><button>NEWADMIN</button></a>
+        <a href="panel_admin.php"><button>PANEL ADMIN</button></a>
+        <a href="usuarios.php"><button>USUARIOS</button></a>
         <a href="login.php"><button>LOGIN</button></a>
         <a href="logout.php"><button>LOGOUT</button></a>
       </header>
@@ -61,12 +57,12 @@
         }
         ?>
 
-        <form action="editar_admin.php" method="post" enctype="multipart/form-data">
+        <form action="editar_usuario.php" method="post" enctype="multipart/form-data">
           <fieldset>
-            <legend>EDITAR ADMIN</legend>
-            <span>ID_user:</span><input type="number" name="id_user" value="<?php echo $id_user; ?>"><br>
+            <legend>EDITAR USUARIO</legend>
+            <input type="hidden" value="<?php echo $cod; ?>" name="id_user"/>
             <span>User:</span><input type="text" name="user" value="<?php echo $user; ?>"><br>
-            <span>Password:</span><input type="text" name="password" value="<?php echo $password; ?>"><br>
+            <span>Password:</span><input type="password" name="password" value="<?php echo $password; ?>"><br>
             <span>Mail:</span><input type="text" name="mail" value="<?php echo $mail; ?>"><br>
 	        <span><input type="submit" value="Enviar"><br>
 	      </fieldset>
@@ -97,8 +93,7 @@
             echo "WRONG QUERY";
             echo var_dump($consulta);
         } else {
-            echo "actualizado correctamente query2";
-            echo var_dump($consulta);
+            echo "Usuario actualizado correctamente";
             header("Refresh:2; url=usuarios.php");
         }
         

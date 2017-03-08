@@ -12,7 +12,7 @@
   
   <body>
       <header>
-        <a href="admin.php"><button>ADMIN</button></a>
+        <a href="panel_admin.php"><button>PANEL ADMIN</button></a>
         <a href="login.php"><button>LOGIN</button></a>
         <a href="logout.php"><button>LOGOUT</button></a>
       </header>

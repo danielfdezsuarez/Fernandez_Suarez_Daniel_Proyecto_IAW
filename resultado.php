@@ -12,8 +12,6 @@
   </head>
   <body>
       <header>
-        <a href="index.php"><button>INDEX</button></a>
-        
           <?php if (!isset($_POST["id_camiseta"])) : ?>
 
             <?php 

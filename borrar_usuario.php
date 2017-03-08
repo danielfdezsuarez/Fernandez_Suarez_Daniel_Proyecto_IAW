@@ -13,15 +13,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BORRAR</title>
+    <title>BORRAR USUARIO</title>
     <style>
-        <?php include 'css/body.css'; ?>
-        <?php include 'css/logo.css'; ?>
+      <?php include 'css/body.css'; ?>
+      <?php include 'css/logo.css'; ?>
     </style>
   </head>
   <body>
       
-      <?php include 'logo.php'; ?><br>
+      <?php include 'logo.php'; ?>
       
       <?php
       
@@ -29,8 +29,6 @@
           echo "No client selected";
       } else {
           $cliente=$_GET['id'];
-      
-      $imagen="";
           
       $connection=new mysqli("localhost", "root", "123456", "camisetas");
       $connection->set_charset("utf8");
@@ -39,31 +37,18 @@
           printf("Connection failed: %s\n", $connection->connect_error);
           exit();
       }
-          
-      if ($result3 = $connection->query("SELECT imagen FROM camiseta WHERE id_camiseta=".$_GET['id'].";")) {
-           $obj = $result3->fetch_object();
-           var_dump($obj);
-           $imagen=$obj->imagen;
-           $result3->close();
-           unset($obj);
-           var_dump($imagen);
-      }    
       ?>
 
       <?php
-          $consulta="DELETE FROM camiseta_equipo WHERE id_camiseta=".$_GET['id'];
-          $consulta2="DELETE FROM camiseta WHERE id_camiseta=".$_GET['id'];
+          $consulta="DELETE FROM usuario WHERE id_user=".$_GET['id'];
           
           $result=mysqli_query($connection,$consulta);
-          $result2=mysqli_query($connection,$consulta2);
           
           if($result==false){
               echo "Error consulta";
           } else {
-              unlink($imagen);
-              echo "Borrado correctamente";
-              echo "$imagen";
-              //header("Refresh:2; url=admin.php");
+              echo "Usuario borrado correctamente";
+              header("Refresh:2; url=usuarios.php");
           }
       }
       ?>

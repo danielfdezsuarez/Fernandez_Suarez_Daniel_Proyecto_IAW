@@ -33,12 +33,10 @@
   </head>
   <body>
       <header>
-        <a href="index.php"><button>INDEX</button></a>
-        <a href="admin.php"><button>ADMIN</button></a>
-        <a href="insertar.php"><button>INSERTAR CAMISETA</button></a>
-        <a href="alertas.php"><button>ALERTAS</button></a>
-        <a href="usuarios.php"><button>USUARIOS</button></a>
-        <a href="newadmin.php"><button>NEWADMIN</button></a>
+        <a href="panel_admin.php"><button>PANEL ADMIN</button></a>
+        <a href="camisetas.php"><button>CAMISETAS</button></a>
+        <a href="equipos.php"><button>EQUIPOS</button></a>
+        <a href="insertar_camiseta.php"><button>INSERTAR CAMISETA</button></a>
         <a href="login.php"><button>LOGIN</button></a>
         <a href="logout.php"><button>LOGOUT</button></a>
       </header>
@@ -87,7 +85,7 @@
         if ($valid) {
           //Put the file in its place
           move_uploaded_file($tmp_file, $target_fi);
-          echo "PRODUCT ADDED";
+          echo "Imagen añadida";
           $connection = new mysqli("localhost", "root", "123456", "camisetas");
           $connection->set_charset("uft8");
           //TESTING IF THE CONNECTION WAS RIGHT
@@ -103,14 +101,13 @@
           $pais=$_POST['pais'];
           $continente=$_POST['continente'];
           
-          var_dump($_POST);
           $query3="INSERT INTO equipo VALUES('$id_equipo', '$club_seleccion', '$nombre', '$pais', '$continente', '$target_fi')";
-          echo $query3;
-           if ($result = $connection->query($query3)) {
-               header("Refresh:2; url=admin.php");
+          if ($result = $connection->query($query3)) {
+              echo "Equipo añadido correctamente";
+              header("Refresh:2; url=panel_admin.php");
           } else {
-           echo "Fallo insert equipo";
-           exit();
+          echo "Fallo insert equipo";
+          exit();
           }
           
         }

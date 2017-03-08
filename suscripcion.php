@@ -18,9 +18,7 @@
     </style>
   </head>
   <body>
-      <header>
-        <a href="index.php"><button>INDEX</button></a>
-      </header>
+      
       <?php include 'logo.php'; ?><br>
       
       <?php if (!isset($_POST["id_equipo"])) : ?>

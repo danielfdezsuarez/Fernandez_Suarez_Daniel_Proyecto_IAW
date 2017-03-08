@@ -39,7 +39,7 @@
                 //VALID LOGIN. SETTING SESSION VARS
                 $_SESSION["user"]=$_POST["user"];
                 $_SESSION["language"]="es";
-                header("Location: admin.php");
+                header("Location: panel_admin.php");
               }
           } else {
             echo "Wrong Query";
