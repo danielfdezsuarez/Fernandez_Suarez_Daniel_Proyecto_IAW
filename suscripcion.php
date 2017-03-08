@@ -67,7 +67,8 @@
           $mail=$_POST['mail'];
           
           $query2="INSERT INTO alerta VALUES('', '$id_equipo', '$mail')";
-            var_dump($query2);
+            //var_dump($query2);
+            echo "Te has suscrito satisfactoriamente";
             if ($result = $connection->query($query2)) {
                 header("Refresh:2; url=index.php");
           } else {

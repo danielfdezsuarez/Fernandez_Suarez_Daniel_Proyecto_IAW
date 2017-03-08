@@ -29,11 +29,12 @@
               exit();
           }
           
-          $consulta="select * from usuario where user='".$_POST["user"]."' and password=md5(".$_POST["password"].")";
+          $consulta="select * from usuario where user='".$_POST["user"]."' and password=md5('".$_POST["password"]."')";
           
           if ($result = $connection->query($consulta)) {
               if ($result->num_rows===0) {
                 echo "LOGIN INVALIDO";
+                  var_dump($consulta);
               } else {
                 //VALID LOGIN. SETTING SESSION VARS
                 $_SESSION["user"]=$_POST["user"];

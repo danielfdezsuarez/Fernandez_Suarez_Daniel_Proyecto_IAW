@@ -29,6 +29,8 @@
           echo "No client selected";
       } else {
           $cliente=$_GET['id'];
+      
+      $borrar_imagen="";
           
       $connection=new mysqli("localhost", "root", "123456", "camisetas");
       $connection->set_charset("utf8");
@@ -37,6 +39,15 @@
           printf("Connection failed: %s\n", $connection->connect_error);
           exit();
       }
+          
+      if ($result3 = $connection->query("SELECT imagen FROM camiseta;")) {
+           $obj = $result3->fetch_object();
+           var_dump($obj);
+           $imagen=$obj->borrar_imagen;
+           $result3->close();
+           unset($obj);
+          var_dump($borrar_imagen);
+          
       ?>
 
       <?php
@@ -50,6 +61,9 @@
               echo "Error consulta";
           } else {
               echo "Borrado correctamente";
+              //unlink($borrar_imagen);
+              echo "$imagen";
+              echo "$borrar_imagen";
               header("Refresh:2; url=admin.php");
           }
       }

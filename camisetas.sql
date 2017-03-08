@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 07-03-2017 a las 14:12:32
+-- Tiempo de generación: 08-03-2017 a las 11:46:15
 -- Versión del servidor: 5.6.33
 -- Versión de PHP: 5.6.26
 
@@ -41,7 +41,10 @@ INSERT INTO `alerta` (`id_alerta`, `id_equipo`, `mail`) VALUES
 (4, 4, 'mailfalso123'),
 (11, 0, 'asdf@sadf'),
 (12, 2, 'asfda@asdf'),
-(13, 20, 'dani@paco');
+(13, 20, 'dani@paco'),
+(15, 2, 'dani@asir.petao'),
+(16, 21, 'sergio@camas'),
+(17, 19, 'fran@oli');
 
 -- --------------------------------------------------------
 
@@ -212,10 +215,12 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_user`, `user`, `password`, `mail`) VALUES
-(1, 'dani', '123456', 'dani@dani.com'),
-(2, 'paco', '123456', 'paco@fritos'),
-(7, 'jesus', '123456', 'gsus@365'),
-(8, 'fran', 'e10adc3949ba59abbe56e057f20f883e', '');
+(1, 'dani', 'e10adc3949ba59abbe56e057f20f883e', 'dani@dani.com'),
+(2, 'paco', 'e10adc3949ba59abbe56e057f20f883e', 'paco@fritos'),
+(7, 'jesus', 'e10adc3949ba59abbe56e057f20f883e', 'gsus@365'),
+(8, 'fran', 'e10adc3949ba59abbe56e057f20f883e', ''),
+(10, 'felipe', 'e10adc3949ba59abbe56e057f20f883e', ''),
+(11, 'sergio', 'e10adc3949ba59abbe56e057f20f883e', 'dani@petao');
 
 --
 -- Índices para tablas volcadas
@@ -261,7 +266,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `alerta`
 --
 ALTER TABLE `alerta`
-  MODIFY `id_alerta` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_alerta` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT de la tabla `camiseta`
 --
@@ -276,7 +281,7 @@ ALTER TABLE `equipo`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_user` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_user` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- Restricciones para tablas volcadas
 --
