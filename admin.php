@@ -61,6 +61,7 @@
           <th>Continente</th>
           <th>Img_eq</th>
           <th>Editar_eq</th>
+          <th>Borrar_eq</th>
           <th>Jugador</th>
           <th>Dorsal</th>
           <th>Marca</th>
@@ -69,8 +70,8 @@
           <th>Competición</th>
           <th>Img_cam</th>
           <th>Observaciones</th>
-          <th>Borrar</th>
           <th>Editar_cam</th>
+          <th>Borrar_cam</th>
             
       </thead>
 
@@ -93,6 +94,12 @@
                             <img src='editar.png';/>
                           </a>
                         </form></td>";
+              echo "<td>
+                        <form method='get'>
+                          <a href='borrar_equipo.php?id=$obj->id_equipo'>
+                            <img src='borrar.png';/>
+                          </a>
+                        </form></td>";
               echo "<td>".$obj->jugador."</td>";
               echo "<td>".$obj->dorsal."</td>";
               echo "<td>".$obj->marca."</td>";
@@ -104,14 +111,14 @@
               echo "<td>".$obj->observaciones."</td>";
               echo "<td>
                         <form method='get'>
-                          <a href='borrar.php?id=$obj->id_camiseta'>
-                            <img src='borrar.png';/>
+                          <a href='editar_camiseta.php?id=$obj->id_camiseta'>
+                            <img src='editar.png';/>
                           </a>
                         </form></td>";
               echo "<td>
                         <form method='get'>
-                          <a href='editar_camiseta.php?id=$obj->id_camiseta'>
-                            <img src='editar.png';/>
+                          <a href='borrar.php?id=$obj->id_camiseta'>
+                            <img src='borrar.png';/>
                           </a>
                         </form></td>";
               echo "</tr>";

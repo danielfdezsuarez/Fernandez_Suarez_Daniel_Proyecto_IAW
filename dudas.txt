@@ -1,4 +1,0 @@
-BORRAR
--como borrar la imagen de la carpeta? unlink()
-
-HOSTING

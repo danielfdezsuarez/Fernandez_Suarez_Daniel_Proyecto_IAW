@@ -30,7 +30,7 @@
       } else {
           $cliente=$_GET['id'];
       
-      $imagen="";
+      $imagen_equipo="";
           
       $connection=new mysqli("localhost", "root", "123456", "camisetas");
       $connection->set_charset("utf8");
@@ -40,19 +40,19 @@
           exit();
       }
           
-      if ($result3 = $connection->query("SELECT imagen FROM camiseta WHERE id_camiseta=".$_GET['id'].";")) {
+      if ($result3 = $connection->query("SELECT imagen_equipo FROM equipo WHERE id_equipo=".$_GET['id'].";")) {
            $obj = $result3->fetch_object();
            var_dump($obj);
-           $imagen=$obj->imagen;
+           $imagen_equipo=$obj->imagen_equipo;
            $result3->close();
            unset($obj);
-           var_dump($imagen);
+           var_dump($imagen_equipo);
       }    
       ?>
 
       <?php
-          $consulta="DELETE FROM camiseta_equipo WHERE id_camiseta=".$_GET['id'];
-          $consulta2="DELETE FROM camiseta WHERE id_camiseta=".$_GET['id'];
+          $consulta="DELETE FROM camiseta_equipo WHERE id_equipo=".$_GET['id'];
+          $consulta2="DELETE FROM equipo WHERE id_equipo=".$_GET['id'];
           
           $result=mysqli_query($connection,$consulta);
           $result2=mysqli_query($connection,$consulta2);
@@ -60,10 +60,10 @@
           if($result==false){
               echo "Error consulta";
           } else {
-              unlink($imagen);
+              unlink($imagen_equipo);
               echo "Borrado correctamente";
-              echo "$imagen";
-              //header("Refresh:2; url=admin.php");
+              //echo "$imagen_equipo";
+              header("Refresh:2; url=admin.php");
           }
       }
       ?>
